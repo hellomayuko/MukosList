@@ -10,10 +10,33 @@ import SwiftUI
 
 struct ContentView: View {
     @State var showingAddItem = false
+    @State var showAddLocation = false
+    let greyColor = Color("medium_gray")
     
     var body: some View {
-        List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
-            LocationCell(showingAddItem: self.$showingAddItem, location: ShoppingLocation(name: "Trader Joe's"))
+        VStack {
+            Button(action: {
+                self.showAddLocation.toggle()
+            }) {
+                Image("add_gray")
+                    .padding(.leading, 14.0)
+                Text("Create New List")
+                    .font(.headline)
+                    .padding(.trailing, 160.0)
+                    .padding(.leading, 18.0)
+                    .foregroundColor(greyColor)
+            }
+            .padding(.horizontal, 16.0)
+            .frame(height: 72.0)
+            .background(Color(.white))
+            .cornerRadius(20)
+            .shadow(radius: 50)
+            .sheet(isPresented: self.$showAddLocation) { AddLocationView()
+             }
+            Spacer()
+            List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
+                LocationCell(showingAddItem: self.$showingAddItem, location: ShoppingLocation(name: "Trader Joe's"))
+            }
         }
     }
 }
@@ -37,17 +60,20 @@ struct LocationCell: View {
             }.sheet(isPresented: self.$showingAddItem) {
                 Text("hello!")
             }
-            VStack {
+            VStack(alignment:.leading){
                 Text("Trader Joe's")
                     .font(.headline)
                 Text("3 items")
                     .font(.subheadline)
             }
+            .padding(.leading, 15.0)
+            Spacer()
             Button(action: {
                 //edit options
             }) {
                 Image("ellipsis")
             }
-        }.frame(minWidth: 0, idealWidth: .infinity, maxWidth: 0, minHeight: .infinity, idealHeight: .infinity, maxHeight: .infinity, alignment: .leading)
+        }
+        .frame(height: 60.0)
     }
 }

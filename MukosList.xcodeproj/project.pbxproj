@@ -16,6 +16,7 @@
 		2C5D25F4245F603600BF1907 /* MukosListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D25F3245F603600BF1907 /* MukosListTests.swift */; };
 		2C5D25FF245F603600BF1907 /* MukosListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D25FE245F603600BF1907 /* MukosListUITests.swift */; };
 		2CACDF1E245F848F00B66935 /* ShoppingLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CACDF1D245F848F00B66935 /* ShoppingLocation.swift */; };
+		2CF6D3132468A02A00206F68 /* AddLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF6D3122468A02A00206F68 /* AddLocationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		2C5D25FE245F603600BF1907 /* MukosListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MukosListUITests.swift; sourceTree = "<group>"; };
 		2C5D2600245F603600BF1907 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CACDF1D245F848F00B66935 /* ShoppingLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingLocation.swift; sourceTree = "<group>"; };
+		2CF6D3122468A02A00206F68 /* AddLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,11 +106,12 @@
 				2C5D25DC245F603500BF1907 /* AppDelegate.swift */,
 				2C5D25DE245F603500BF1907 /* SceneDelegate.swift */,
 				2C5D25E0245F603500BF1907 /* ContentView.swift */,
+				2CF6D3122468A02A00206F68 /* AddLocationView.swift */,
 				2C5D25E2245F603600BF1907 /* Assets.xcassets */,
 				2C5D25E7245F603600BF1907 /* LaunchScreen.storyboard */,
 				2C5D25EA245F603600BF1907 /* Info.plist */,
-				2C5D25E4245F603600BF1907 /* Preview Content */,
 				2CACDF1D245F848F00B66935 /* ShoppingLocation.swift */,
+				2C5D25E4245F603600BF1907 /* Preview Content */,
 			);
 			path = MukosList;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 			files = (
 				2C5D25DD245F603500BF1907 /* AppDelegate.swift in Sources */,
 				2C5D25DF245F603500BF1907 /* SceneDelegate.swift in Sources */,
+				2CF6D3132468A02A00206F68 /* AddLocationView.swift in Sources */,
 				2CACDF1E245F848F00B66935 /* ShoppingLocation.swift in Sources */,
 				2C5D25E1245F603500BF1907 /* ContentView.swift in Sources */,
 			);
