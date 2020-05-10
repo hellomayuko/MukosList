@@ -15,24 +15,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Button(action: {
-                self.showAddLocation.toggle()
-            }) {
-                Image("add_gray")
-                    .padding(.leading, 14.0)
-                Text("Create New List")
-                    .font(.headline)
-                    .padding(.trailing, 160.0)
-                    .padding(.leading, 18.0)
-                    .foregroundColor(greyColor)
-            }
-            .padding(.horizontal, 16.0)
-            .frame(height: 72.0)
-            .background(Color(.white))
-            .cornerRadius(20)
-            .shadow(radius: 50)
-            .sheet(isPresented: self.$showAddLocation) { AddLocationView()
-             }
+            NewListButton(showAddLocation: $showAddLocation)
             Spacer()
             List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
                 LocationCell(showingAddItem: self.$showingAddItem, location: ShoppingLocation(name: "Trader Joe's"))
@@ -75,5 +58,31 @@ struct LocationCell: View {
             }
         }
         .frame(height: 60.0)
+    }
+}
+
+struct NewListButton: View {
+    @Binding var showAddLocation: Bool
+    
+    var body: some View {
+        Button(action: {
+            self.showAddLocation.toggle()
+        }) {
+            Image("add_gray")
+                .padding(.leading, 14.0)
+            Text("Create New List")
+                .font(.headline)
+                .padding(.trailing, 160.0)
+                .padding(.leading, 18.0)
+                .foregroundColor(Color("medium_gray"))
+        }
+        .padding(.horizontal, 16.0)
+        .frame(height: 72.0)
+        .background(Color(.white))
+        .cornerRadius(20)
+        .shadow(radius: 50)
+        .sheet(isPresented: self.$showAddLocation) {
+            AddLocationView()
+        }
     }
 }

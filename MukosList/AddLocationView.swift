@@ -9,8 +9,23 @@
 import SwiftUI
 
 struct AddLocationView: View {
+    @State var locationName = ""
+    
     var body: some View {
-        Text("hi")
+        VStack {
+            Text("Give your list a name")
+                .font(.headline)
+                .foregroundColor(Color("medium_gray"))
+                .padding(.bottom, 12.0)
+            HStack {
+                TextField("Trader Joe's...", text: $locationName, onEditingChanged: {_ in print("something")}, onCommit: {
+                    
+                })
+                .frame(height: 56.0)
+                .border(Color("light_gray"))
+                
+            }.padding(.horizontal, 16)
+        }
     }
 }
 

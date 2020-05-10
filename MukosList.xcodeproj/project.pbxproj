@@ -107,10 +107,10 @@
 				2C5D25DE245F603500BF1907 /* SceneDelegate.swift */,
 				2C5D25E0245F603500BF1907 /* ContentView.swift */,
 				2CF6D3122468A02A00206F68 /* AddLocationView.swift */,
+				2CACDF1D245F848F00B66935 /* ShoppingLocation.swift */,
 				2C5D25E2245F603600BF1907 /* Assets.xcassets */,
 				2C5D25E7245F603600BF1907 /* LaunchScreen.storyboard */,
 				2C5D25EA245F603600BF1907 /* Info.plist */,
-				2CACDF1D245F848F00B66935 /* ShoppingLocation.swift */,
 				2C5D25E4245F603600BF1907 /* Preview Content */,
 			);
 			path = MukosList;
