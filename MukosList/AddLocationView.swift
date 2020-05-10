@@ -27,7 +27,13 @@ struct AddLocationView: View {
                 NavigationLink(destination: AddItemView(isShowingNewLocationFlow: self.$isShowingNewLocationFlow)) {
                     Text("Done")
                 }
-            }.navigationBarTitle("New List")
+            }
+            .navigationBarTitle("New List")
+            .navigationBarItems(trailing: Button(action: {
+                self.isShowingNewLocationFlow.toggle()
+            }) {
+                Image(systemName: "xmark")
+            })
         }
     }
 }
