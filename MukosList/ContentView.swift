@@ -10,12 +10,12 @@ import SwiftUI
 
 struct ContentView: View {
     @State var showingAddItem = false
-    @State var showAddLocation = false
+    @State var isShowingNewLocationFlow = false
     let greyColor = Color("medium_gray")
     
     var body: some View {
         VStack {
-            NewListButton(showAddLocation: $showAddLocation)
+            NewListButton(showAddLocation: $isShowingNewLocationFlow)
             Spacer()
             List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
                 LocationCell(showingAddItem: self.$showingAddItem, location: ShoppingLocation(name: "Trader Joe's"))
@@ -82,7 +82,7 @@ struct NewListButton: View {
         .cornerRadius(20)
         .shadow(radius: 50)
         .sheet(isPresented: self.$showAddLocation) {
-            AddLocationView()
+            AddLocationView(isShowingNewLocationFlow: self.$showAddLocation)
         }
     }
 }
