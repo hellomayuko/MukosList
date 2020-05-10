@@ -24,9 +24,10 @@ struct AddLocationView: View {
                     .frame(height: 56.0)
                     .border(Color("light_gray"))
                 }.padding(.horizontal, 16)
-                NavigationLink(destination: AddItemView(isShowingNewLocationFlow: self.$isShowingNewLocationFlow)) {
+                NavigationLink(destination: AddItemView(isShowingNewLocationFlow: self.$isShowingNewLocationFlow, locationName: "Trader Joe's", itemName: "Bananas"), label:
+                 {
                     Text("Done")
-                }
+                })
             }
             .navigationBarTitle("New List")
             .navigationBarItems(trailing: Button(action: {
