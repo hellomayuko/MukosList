@@ -13,7 +13,7 @@ struct AddItemView: View {
     
     @Binding var isShowingNewLocationFlow: Bool
     @State var locationName: String
-    @State var itemName: String
+    @State var itemName: String = ""
     
     var body: some View {
         VStack {
@@ -25,7 +25,7 @@ struct AddItemView: View {
                         .foregroundColor(Color("medium_gray"))
                 }.padding(.leading, 28)
                 Spacer()
-                Text("Trader Joe's")
+                Text(self.locationName)
                     .font(.title)
                     .foregroundColor(Color("medium_gray"))
                 Spacer()
@@ -38,9 +38,13 @@ struct AddItemView: View {
             Spacer()
             HStack {
                 Spacer().frame(width:24)
-                TextField("Cabbage, Cake, etc.", text: $itemName)
-                .frame(height: 56.0)
-                .border(Color("orange"))
+                TextField("Cabbage, Cake, etc.", text: $itemName, onEditingChanged: {_ in
+                    print("added \(self.itemName)")
+                }, onCommit: {
+                    //add this to the list
+                })
+                    .frame(height: 56.0)
+                    .border(Color("orange"))
                 Spacer().frame(width:24)
             }
             Spacer()
@@ -61,7 +65,7 @@ struct AddItemView: View {
 
 struct AddItemView_Previews: PreviewProvider {
     static var previews: some View {
-        AddItemView(isShowingNewLocationFlow: .constant(true), locationName: "Bananas", itemName: "")
+        AddItemView(isShowingNewLocationFlow: .constant(true), locationName: "Trader Joe's", itemName: "")
     }
 }
 

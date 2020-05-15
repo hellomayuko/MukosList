@@ -24,6 +24,11 @@ struct AddLocationView: View {
                         Image(systemName: "chevron.left")
                     }.padding(.leading, 28)
                     Spacer()
+                    Text("New List")
+                    .font(.title)
+                    .foregroundColor(Color("medium_gray"))
+                    Spacer()
+                    Text("")
                 }.padding(.top, 28)
                 Spacer()
                 Text("Give your list a name")
@@ -35,7 +40,7 @@ struct AddLocationView: View {
                     .frame(height: 56.0)
                     .border(Color("light_gray"))
                 }.padding(.horizontal, 16)
-                NavigationLink(destination: AddItemView(isShowingNewLocationFlow: self.$isShowingNewLocationFlow, locationName: locationName, itemName: "Bananas"), label:
+                NavigationLink(destination: AddItemView(isShowingNewLocationFlow: self.$isShowingNewLocationFlow, locationName: locationName), label:
                  {
                     Text("Done")
                 })
