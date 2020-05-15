@@ -9,12 +9,23 @@
 import SwiftUI
 
 struct AddLocationView: View {
+    @Environment(\.presentationMode) var presentation
+    
     @State var locationName = ""
     @Binding var isShowingNewLocationFlow: Bool
     
     var body: some View {
         NavigationView {
             VStack {
+                HStack {
+                    Button(action: {
+                        self.presentation.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "chevron.left")
+                    }.padding(.leading, 28)
+                    Spacer()
+                }.padding(.top, 28)
+                Spacer()
                 Text("Give your list a name")
                     .font(.headline)
                     .foregroundColor(Color("medium_gray"))
@@ -24,17 +35,12 @@ struct AddLocationView: View {
                     .frame(height: 56.0)
                     .border(Color("light_gray"))
                 }.padding(.horizontal, 16)
-                NavigationLink(destination: AddItemView(isShowingNewLocationFlow: self.$isShowingNewLocationFlow, locationName: "Trader Joe's", itemName: "Bananas"), label:
+                NavigationLink(destination: AddItemView(isShowingNewLocationFlow: self.$isShowingNewLocationFlow, locationName: locationName, itemName: "Bananas"), label:
                  {
                     Text("Done")
                 })
-            }
-            .navigationBarTitle("New List")
-            .navigationBarItems(trailing: Button(action: {
-                self.isShowingNewLocationFlow.toggle()
-            }) {
-                Image(systemName: "xmark")
-            })
+                Spacer()
+            }.navigationBarHidden(true).navigationBarTitle(Text("hiding!"))
         }
     }
 }
