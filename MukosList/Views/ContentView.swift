@@ -1,0 +1,36 @@
+//
+//  ContentView.swift
+//  MukosList
+//
+//  Created by Mayuko Inoue on 5/3/20.
+//  Copyright © 2020 Mayuko Inoue. All rights reserved.
+//
+
+import SwiftUI
+
+struct ContentView: View {
+    @State var selectedView = 1
+    
+    var body: some View {
+        TabView(selection: $selectedView) {
+            Text("Favorites Placeholder")
+                .tabItem {
+                    Image("star")
+                }.tag(0)
+            HomeListView()
+                .tabItem {
+                    Image("list_home")
+                }.tag(1)
+            Text("Settings Placeholder")
+                .tabItem {
+                    Image("gear")
+                }.tag(2)
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}

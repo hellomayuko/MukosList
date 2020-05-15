@@ -1,14 +1,14 @@
 //
-//  ContentView.swift
+//  HomeListView.swift
 //  MukosList
 //
-//  Created by Mayuko Inoue on 5/3/20.
+//  Created by Mayuko Inoue on 5/15/20.
 //  Copyright © 2020 Mayuko Inoue. All rights reserved.
 //
 
 import SwiftUI
 
-struct ContentView: View {
+struct HomeListView: View {
     @State var showingAddItem = false
     @State var isShowingNewLocationFlow = false
     let greyColor = Color("medium_gray")
@@ -24,7 +24,7 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct HomeListView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
