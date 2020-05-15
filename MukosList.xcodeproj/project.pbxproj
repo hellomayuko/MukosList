@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C4E335B246F43100084D51B /* HomeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E335A246F43100084D51B /* HomeListView.swift */; };
+		2C4E33B0246F537A0084D51B /* MukosList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E33AE246F537A0084D51B /* MukosList.xcdatamodeld */; };
 		2C5D25DD245F603500BF1907 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D25DC245F603500BF1907 /* AppDelegate.swift */; };
 		2C5D25DF245F603500BF1907 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D25DE245F603500BF1907 /* SceneDelegate.swift */; };
 		2C5D25E1245F603500BF1907 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D25E0245F603500BF1907 /* ContentView.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		2C4E335A246F43100084D51B /* HomeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListView.swift; sourceTree = "<group>"; };
+		2C4E33AF246F537A0084D51B /* MukosList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MukosList.xcdatamodel; sourceTree = "<group>"; };
 		2C5D25D9245F603500BF1907 /* MukosList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MukosList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C5D25DC245F603500BF1907 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C5D25DE245F603500BF1907 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				2C4E335C246F443F0084D51B /* Views */,
 				2C4E335D246F444A0084D51B /* Models */,
 				2C5D25DC245F603500BF1907 /* AppDelegate.swift */,
+				2C4E33AE246F537A0084D51B /* MukosList.xcdatamodeld */,
 				2C5D25DE245F603500BF1907 /* SceneDelegate.swift */,
 				2C5D25E2245F603600BF1907 /* Assets.xcassets */,
 				2C5D25E7245F603600BF1907 /* LaunchScreen.storyboard */,
@@ -296,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C5D25DD245F603500BF1907 /* AppDelegate.swift in Sources */,
+				2C4E33B0246F537A0084D51B /* MukosList.xcdatamodeld in Sources */,
 				2C4E335B246F43100084D51B /* HomeListView.swift in Sources */,
 				2CF6D3152468AD1800206F68 /* AddItemView.swift in Sources */,
 				2C5D25DF245F603500BF1907 /* SceneDelegate.swift in Sources */,
@@ -626,6 +630,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2C4E33AE246F537A0084D51B /* MukosList.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2C4E33AF246F537A0084D51B /* MukosList.xcdatamodel */,
+			);
+			currentVersion = 2C4E33AF246F537A0084D51B /* MukosList.xcdatamodel */;
+			path = MukosList.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2C5D25D1245F603500BF1907 /* Project object */;
 }
