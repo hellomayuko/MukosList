@@ -8,12 +8,12 @@
 
 import SwiftUI
 
-struct AddLocationView: View {
+struct AddListView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.presentationMode) var presentation
     
-    @State var locationName = ""
-    @Binding var isShowingNewLocationFlow: Bool
+    @State var listName = ""
+    @Binding var isShowingNewListFlow: Bool
     
     var body: some View {
         NavigationView {
@@ -37,11 +37,11 @@ struct AddLocationView: View {
                     .foregroundColor(Color("medium_gray"))
                     .padding(.bottom, 12.0)
                 HStack {
-                    TextField("Trader Joe's...", text: $locationName)
+                    TextField("Trader Joe's...", text: $listName)
                     .frame(height: 56.0)
                     .border(Color("light_gray"))
                 }.padding(.horizontal, 16)
-                NavigationLink(destination: AddItemView(isShowingNewLocationFlow: self.$isShowingNewLocationFlow, locationName: locationName).environment(\.managedObjectContext, self.managedObjectContext), label:
+                NavigationLink(destination: ShoppingItemsView(isShowingNewListFlow: self.$isShowingNewListFlow, locationName: listName).environment(\.managedObjectContext, self.managedObjectContext), label:
                  {
                     Text("Done")
                 })
@@ -52,8 +52,8 @@ struct AddLocationView: View {
 }
 
 
-struct AddLocationView_Previews: PreviewProvider {
+struct AddListView_Previews: PreviewProvider {
     static var previews: some View {
-        AddLocationView(isShowingNewLocationFlow: .constant(true))
+        AddListView(isShowingNewListFlow: .constant(true))
     }
 }

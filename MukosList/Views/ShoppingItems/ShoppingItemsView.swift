@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct AddItemView: View {
+struct ShoppingItemsView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.presentationMode) var presentation
     
@@ -19,7 +19,7 @@ struct AddItemView: View {
         ]
     ) var shoppingItems: FetchedResults<ShoppingItem>
     
-    @Binding var isShowingNewLocationFlow: Bool
+    @Binding var isShowingNewListFlow: Bool
     @State var locationName: String
     @State var itemName: String = ""
     
@@ -38,7 +38,7 @@ struct AddItemView: View {
                     .foregroundColor(Color("medium_gray"))
                 Spacer()
                 Button(action: {
-                   self.isShowingNewLocationFlow.toggle()
+                   self.isShowingNewListFlow.toggle()
                 }) {
                     Image(systemName: "xmark")
                 }.padding(.trailing, 28)
@@ -83,8 +83,8 @@ struct AddItemView: View {
     }
 }
 
-struct AddItemView_Previews: PreviewProvider {
+struct ShoppingItemsView_Previews: PreviewProvider {
     static var previews: some View {
-        AddItemView(isShowingNewLocationFlow: .constant(true), locationName: "Trader Joe's", itemName: "")
+        ShoppingItemsView(isShowingNewListFlow: .constant(true), locationName: "Trader Joe's", itemName: "")
     }
 }
