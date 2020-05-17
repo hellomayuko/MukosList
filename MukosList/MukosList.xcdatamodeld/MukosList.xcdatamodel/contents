@@ -5,14 +5,15 @@
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
     <entity name="ShoppingItem" representedClassName="ShoppingItem" syncable="YES" codeGenerationType="class">
-        <attribute name="highPriority" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="quantity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="highPriority" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="itemName" attributeType="String" defaultValueString=""/>
+        <attribute name="lastUpdated" attributeType="Date" defaultDateTimeInterval="599558400" usesScalarValueType="NO"/>
+        <attribute name="quantity" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="store" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location"/>
     </entity>
     <elements>
         <element name="Location" positionX="-63" positionY="-18" width="128" height="73"/>
-        <element name="ShoppingItem" positionX="-54" positionY="9" width="128" height="118"/>
+        <element name="ShoppingItem" positionX="-54" positionY="9" width="128" height="28"/>
     </elements>
 </model>

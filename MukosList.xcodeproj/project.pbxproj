@@ -17,6 +17,9 @@
 		2C5D25E9245F603600BF1907 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C5D25E7245F603600BF1907 /* LaunchScreen.storyboard */; };
 		2C5D25F4245F603600BF1907 /* MukosListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D25F3245F603600BF1907 /* MukosListTests.swift */; };
 		2C5D25FF245F603600BF1907 /* MukosListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D25FE245F603600BF1907 /* MukosListUITests.swift */; };
+		2C893E5F2471E9E90013DEE5 /* ShoppingItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C893E5E2471E9E90013DEE5 /* ShoppingItem+Extensions.swift */; };
+		2C893E612471EB140013DEE5 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C893E602471EB140013DEE5 /* Date+Extensions.swift */; };
+		2C893E632471EF790013DEE5 /* ShoppingItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C893E622471EF790013DEE5 /* ShoppingItemCell.swift */; };
 		2CACDF1E245F848F00B66935 /* ShoppingLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CACDF1D245F848F00B66935 /* ShoppingLocation.swift */; };
 		2CF6D3132468A02A00206F68 /* AddLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF6D3122468A02A00206F68 /* AddLocationView.swift */; };
 		2CF6D3152468AD1800206F68 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF6D3142468AD1800206F68 /* AddItemView.swift */; };
@@ -56,6 +59,9 @@
 		2C5D25FA245F603600BF1907 /* MukosListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MukosListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C5D25FE245F603600BF1907 /* MukosListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MukosListUITests.swift; sourceTree = "<group>"; };
 		2C5D2600245F603600BF1907 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C893E5E2471E9E90013DEE5 /* ShoppingItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShoppingItem+Extensions.swift"; sourceTree = "<group>"; };
+		2C893E602471EB140013DEE5 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		2C893E622471EF790013DEE5 /* ShoppingItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItemCell.swift; sourceTree = "<group>"; };
 		2CACDF1D245F848F00B66935 /* ShoppingLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingLocation.swift; sourceTree = "<group>"; };
 		2CF6D3122468A02A00206F68 /* AddLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationView.swift; sourceTree = "<group>"; };
 		2CF6D3142468AD1800206F68 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
@@ -93,6 +99,7 @@
 				2C4E335A246F43100084D51B /* HomeListView.swift */,
 				2CF6D3122468A02A00206F68 /* AddLocationView.swift */,
 				2CF6D3142468AD1800206F68 /* AddItemView.swift */,
+				2C893E622471EF790013DEE5 /* ShoppingItemCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -101,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				2CACDF1D245F848F00B66935 /* ShoppingLocation.swift */,
+				2C893E5E2471E9E90013DEE5 /* ShoppingItem+Extensions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -137,6 +145,7 @@
 				2C5D25E7245F603600BF1907 /* LaunchScreen.storyboard */,
 				2C5D25EA245F603600BF1907 /* Info.plist */,
 				2C5D25E4245F603600BF1907 /* Preview Content */,
+				2C893E602471EB140013DEE5 /* Date+Extensions.swift */,
 			);
 			path = MukosList;
 			sourceTree = "<group>";
@@ -298,10 +307,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C893E632471EF790013DEE5 /* ShoppingItemCell.swift in Sources */,
+				2C893E5F2471E9E90013DEE5 /* ShoppingItem+Extensions.swift in Sources */,
 				2C5D25DD245F603500BF1907 /* AppDelegate.swift in Sources */,
 				2C4E33B0246F537A0084D51B /* MukosList.xcdatamodeld in Sources */,
 				2C4E335B246F43100084D51B /* HomeListView.swift in Sources */,
 				2CF6D3152468AD1800206F68 /* AddItemView.swift in Sources */,
+				2C893E612471EB140013DEE5 /* Date+Extensions.swift in Sources */,
 				2C5D25DF245F603500BF1907 /* SceneDelegate.swift in Sources */,
 				2CF6D3132468A02A00206F68 /* AddLocationView.swift in Sources */,
 				2CACDF1E245F848F00B66935 /* ShoppingLocation.swift in Sources */,

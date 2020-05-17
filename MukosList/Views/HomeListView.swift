@@ -28,7 +28,7 @@ struct HomeListView: View {
                     .frame(width: 100, height: 100, alignment: .center)
                     .padding(.trailing, 24)
                 }.frame(height: 200).background(Color("orange"))
-            NewListButton(showAddLocation: $isShowingNewLocationFlow)
+            NewListButton(showAddLocation: $isShowingNewLocationFlow).environment(\.managedObjectContext, self.managedObjectContext)
             Spacer()
             List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
                 LocationCell(showingAddItem: self.$showingAddItem, location: ShoppingLocation(name: "Trader Joe's")).environment(\.managedObjectContext, self.managedObjectContext)
@@ -75,6 +75,7 @@ struct LocationCell: View {
 }
 
 struct NewListButton: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
     @Binding var showAddLocation: Bool
     
     var body: some View {
@@ -95,7 +96,7 @@ struct NewListButton: View {
         .cornerRadius(20)
         .shadow(radius: 3)
         .sheet(isPresented: self.$showAddLocation) {
-            AddLocationView(isShowingNewLocationFlow: self.$showAddLocation)
+            AddLocationView(isShowingNewLocationFlow: self.$showAddLocation).environment(\.managedObjectContext, self.managedObjectContext)
         }
     }
 }

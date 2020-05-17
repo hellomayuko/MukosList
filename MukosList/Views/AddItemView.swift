@@ -12,6 +12,13 @@ struct AddItemView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.presentationMode) var presentation
     
+    @FetchRequest(
+        entity: ShoppingItem.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \ShoppingItem.lastUpdated, ascending: true),
+        ]
+    ) var shoppingItems: FetchedResults<ShoppingItem>
+    
     @Binding var isShowingNewLocationFlow: Bool
     @State var locationName: String
     @State var itemName: String = ""
@@ -43,7 +50,18 @@ struct AddItemView: View {
                     print("added \(self.itemName)")
                 }, onCommit: {
                     //add this to the list
-                    
+                    let newItem = ShoppingItem(context: self.managedObjectContext)
+                    newItem.id = UUID()
+                    newItem.lastUpdated = Date()
+                    newItem.itemName = self.itemName
+                    newItem.quantity = 1
+                    newItem.highPriority = false
+                    do {
+                        try self.managedObjectContext.save()
+                        print("Item saved.")
+                    } catch {
+                        print(error.localizedDescription)
+                    }
                 })
                     .frame(height: 56.0)
                     .border(Color("orange"))
@@ -56,9 +74,9 @@ struct AddItemView: View {
                 }) {
                     Image("filter")
                 }.padding(.leading, 16).padding(.top, 14)
-                List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
-                    ItemCell()
-                }.padding(.leading, -12)
+                List(shoppingItems, id: \.self) { shoppingItem in
+                    ItemCell(shoppingItem: shoppingItem)
+                }
             }
         }
         .navigationBarHidden(true).navigationBarTitle(Text("hiding!"))
@@ -68,26 +86,5 @@ struct AddItemView: View {
 struct AddItemView_Previews: PreviewProvider {
     static var previews: some View {
         AddItemView(isShowingNewLocationFlow: .constant(true), locationName: "Trader Joe's", itemName: "")
-    }
-}
-
-struct ItemCell: View {
-    var body: some View {
-        HStack {
-            VStack(alignment:.leading) {
-                Text("Bananas")
-                    .font(.headline)
-                    .foregroundColor(Color("text_grey"))
-                Text("Submitted 9:42")
-                    .font(.footnote)
-                    .foregroundColor(Color("text_grey"))
-            }
-            Spacer()
-            Button(action: {
-                //edit options
-            }) {
-                Image("ellipsis")
-            }
-        }.frame(height: 50.0)
     }
 }
