@@ -15,6 +15,6 @@
     </entity>
     <elements>
         <element name="ShoppingList" positionX="-63" positionY="-18" width="128" height="88"/>
-        <element name="ShoppingItem" positionX="-54" positionY="9" width="128" height="133"/>
+        <element name="ShoppingItem" positionX="200.9140625" positionY="-63.10546875" width="128" height="133"/>
     </elements>
 </model>

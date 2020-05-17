@@ -15,6 +15,7 @@ struct ShoppingListDataManager {
         let newItem = ShoppingList(context:context)
         newItem.id = UUID()
         newItem.name = listName
+        
         do {
             try context.save()
         } catch {
@@ -37,5 +38,23 @@ struct ShoppingListDataManager {
         } catch {
           print(error)
         }
+    }
+    
+    func fetchList(named name: String, context: NSManagedObjectContext) -> ShoppingList? {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "ShoppingList")
+        fetchRequest.predicate = NSPredicate(format: "name == %@", name)
+        fetchRequest.fetchLimit = 1
+        
+        do {
+            let fetchAttempt = try context.fetch(fetchRequest)
+            guard let shoppingList = fetchAttempt.first else {
+                return nil
+            }
+            return shoppingList as? ShoppingList
+//            (shoppingList as! NSManagedObjectContext).setValue(name, forKey: "name")
+        } catch {
+          print(error)
+        }
+        return nil
     }
 }

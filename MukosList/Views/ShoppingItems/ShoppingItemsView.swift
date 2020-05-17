@@ -20,7 +20,7 @@ struct ShoppingItemsView: View {
     ) var shoppingItems: FetchedResults<ShoppingItem>
     
     @Binding var isShowingNewListFlow: Bool
-    @State var locationName: String
+    @State var listName: String
     @State var itemName: String = ""
     
     var dataManager = ShoppingItemDataManager()
@@ -35,7 +35,7 @@ struct ShoppingItemsView: View {
                         .foregroundColor(Color("medium_gray"))
                 }.padding(.leading, 28)
                 Spacer()
-                Text(self.locationName)
+                Text(self.listName)
                     .font(.title)
                     .foregroundColor(Color("medium_gray"))
                 Spacer()
@@ -51,7 +51,7 @@ struct ShoppingItemsView: View {
                 TextField("Cabbage, Cake, etc.", text: $itemName, onEditingChanged: {_ in
                     print("added \(self.itemName)")
                 }, onCommit: {
-                    self.dataManager.addItem(self.itemName, quantity: 1, highPriority: false, context: self.managedObjectContext)
+                    self.dataManager.addItem(self.itemName, toList: self.listName, quantity: 1, highPriority: false, context: self.managedObjectContext)
                 })
                     .frame(height: 56.0)
                     .border(Color("orange"))
@@ -75,6 +75,6 @@ struct ShoppingItemsView: View {
 
 struct ShoppingItemsView_Previews: PreviewProvider {
     static var previews: some View {
-        ShoppingItemsView(isShowingNewListFlow: .constant(true), locationName: "Trader Joe's", itemName: "")
+        ShoppingItemsView(isShowingNewListFlow: .constant(true), listName: "Trader Joe's", itemName: "")
     }
 }

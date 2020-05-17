@@ -9,8 +9,11 @@
 import SwiftUI
 
 struct ListCell: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
     @Binding var showingAddItem: Bool
     var list: ShoppingList
+    @State var notShowingNewListFlow = false
     
     var body: some View {
         HStack {
@@ -19,12 +22,13 @@ struct ListCell: View {
             }) {
                 Image("add_yellow")
             }.sheet(isPresented: self.$showingAddItem) {
-                Text("hello!")
+                ShoppingItemsView(isShowingNewListFlow: self.$notShowingNewListFlow, listName: self.list.name ?? "idk").environment(\.managedObjectContext, self.managedObjectContext)
             }
             VStack(alignment:.leading){
                 Text(list.name ?? "N/A")
                     .font(.headline)
-                Text("3 items")
+                
+                Text("\(list.shoppingItems!.count) items")
                     .font(.subheadline)
             }
             .padding(.leading, 15.0)
