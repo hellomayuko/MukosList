@@ -17,12 +17,23 @@ struct HomeListView: View {
     
     var body: some View {
         VStack {
+            HStack(alignment: .center) {
+                Text("Hello, Mayuko")
+                    .padding(.leading, 24)
+                    .font(.title)
+                    .foregroundColor(Color.white)
+                Spacer()
+                Circle()
+                    .foregroundColor(Color.blue)
+                    .frame(width: 100, height: 100, alignment: .center)
+                    .padding(.trailing, 24)
+                }.frame(height: 200).background(Color("orange"))
             NewListButton(showAddLocation: $isShowingNewLocationFlow)
             Spacer()
             List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
                 LocationCell(showingAddItem: self.$showingAddItem, location: ShoppingLocation(name: "Trader Joe's")).environment(\.managedObjectContext, self.managedObjectContext)
             }
-        }
+        }.edgesIgnoringSafeArea(.top)
     }
 }
 
@@ -82,7 +93,7 @@ struct NewListButton: View {
         .frame(height: 72.0)
         .background(Color(.white))
         .cornerRadius(20)
-        .shadow(radius: 50)
+        .shadow(radius: 3)
         .sheet(isPresented: self.$showAddLocation) {
             AddLocationView(isShowingNewLocationFlow: self.$showAddLocation)
         }
