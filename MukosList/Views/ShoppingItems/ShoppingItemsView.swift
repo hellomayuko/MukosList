@@ -23,6 +23,8 @@ struct ShoppingItemsView: View {
     @State var locationName: String
     @State var itemName: String = ""
     
+    var dataManager = ShoppingItemDataManager()
+    
     var body: some View {
         VStack {
             HStack {
@@ -49,19 +51,7 @@ struct ShoppingItemsView: View {
                 TextField("Cabbage, Cake, etc.", text: $itemName, onEditingChanged: {_ in
                     print("added \(self.itemName)")
                 }, onCommit: {
-                    //add this to the list
-                    let newItem = ShoppingItem(context: self.managedObjectContext)
-                    newItem.id = UUID()
-                    newItem.lastUpdated = Date()
-                    newItem.itemName = self.itemName
-                    newItem.quantity = 1
-                    newItem.highPriority = false
-                    do {
-                        try self.managedObjectContext.save()
-                        print("Item saved.")
-                    } catch {
-                        print(error.localizedDescription)
-                    }
+                    self.dataManager.addItem(self.itemName, quantity: 1, highPriority: false, context: self.managedObjectContext)
                 })
                     .frame(height: 56.0)
                     .border(Color("orange"))

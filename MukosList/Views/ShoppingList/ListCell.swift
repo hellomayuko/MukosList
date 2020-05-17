@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ListCell: View {
     @Binding var showingAddItem: Bool
-    let location: ShoppingLocation
+    var list: ShoppingList
     
     var body: some View {
         HStack {
@@ -22,7 +22,7 @@ struct ListCell: View {
                 Text("hello!")
             }
             VStack(alignment:.leading){
-                Text("Trader Joe's")
+                Text(list.name ?? "N/A")
                     .font(.headline)
                 Text("3 items")
                     .font(.subheadline)

@@ -15,6 +15,8 @@ struct AddListView: View {
     @State var listName = ""
     @Binding var isShowingNewListFlow: Bool
     
+    var dataManager = ShoppingListDataManager()
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -37,9 +39,13 @@ struct AddListView: View {
                     .foregroundColor(Color("medium_gray"))
                     .padding(.bottom, 12.0)
                 HStack {
-                    TextField("Trader Joe's...", text: $listName)
-                    .frame(height: 56.0)
-                    .border(Color("light_gray"))
+                    TextField("Trader Joe's...", text: $listName, onEditingChanged: {_ in
+                        print("added \(self.listName)")
+                    }, onCommit: {
+                        //Call update instead of add just in case we already
+                        //have a list of the same name
+                        self.dataManager.updateList(name: self.listName, context: self.managedObjectContext)
+                    }).frame(height: 56.0).border(Color("light_gray"))
                 }.padding(.horizontal, 16)
                 NavigationLink(destination: ShoppingItemsView(isShowingNewListFlow: self.$isShowingNewListFlow, locationName: listName).environment(\.managedObjectContext, self.managedObjectContext), label:
                  {

@@ -11,6 +11,13 @@ import SwiftUI
 struct HomeListView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
+    @FetchRequest(
+        entity: ShoppingList.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \ShoppingList.name, ascending: true),
+        ]
+    ) var shoppingLists: FetchedResults<ShoppingList>
+    
     @State var showingAddItem = false
     @State var isShowingNewLocationFlow = false
     let greyColor = Color("medium_gray")
@@ -30,8 +37,8 @@ struct HomeListView: View {
                 }.frame(height: 200).background(Color("orange"))
             NewListButton(showAddLocation: $isShowingNewLocationFlow).environment(\.managedObjectContext, self.managedObjectContext)
             Spacer()
-            List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
-                ListCell(showingAddItem: self.$showingAddItem, location: ShoppingLocation(name: "Trader Joe's")).environment(\.managedObjectContext, self.managedObjectContext)
+            List(shoppingLists, id: \.self) { shoppingList in
+                ListCell(showingAddItem: self.$showingAddItem, list: shoppingList).environment(\.managedObjectContext, self.managedObjectContext)
             }
         }.edgesIgnoringSafeArea(.top)
     }
