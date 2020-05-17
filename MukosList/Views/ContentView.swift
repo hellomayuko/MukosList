@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
     @State var selectedView = 1
     
     var body: some View {
@@ -18,6 +20,7 @@ struct ContentView: View {
                     Image("star")
                 }.tag(0)
             HomeListView()
+                .environment(\.managedObjectContext, self.managedObjectContext)
                 .tabItem {
                     Image("list_home")
                 }.tag(1)
@@ -31,6 +34,8 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        return ContentView().environment(\.managedObjectContext, context)
     }
 }

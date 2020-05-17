@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct AddItemView: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.presentationMode) var presentation
     
     @Binding var isShowingNewLocationFlow: Bool
@@ -42,6 +43,7 @@ struct AddItemView: View {
                     print("added \(self.itemName)")
                 }, onCommit: {
                     //add this to the list
+                    
                 })
                     .frame(height: 56.0)
                     .border(Color("orange"))

@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct AddLocationView: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.presentationMode) var presentation
     
     @State var locationName = ""
@@ -40,7 +41,7 @@ struct AddLocationView: View {
                     .frame(height: 56.0)
                     .border(Color("light_gray"))
                 }.padding(.horizontal, 16)
-                NavigationLink(destination: AddItemView(isShowingNewLocationFlow: self.$isShowingNewLocationFlow, locationName: locationName), label:
+                NavigationLink(destination: AddItemView(isShowingNewLocationFlow: self.$isShowingNewLocationFlow, locationName: locationName).environment(\.managedObjectContext, self.managedObjectContext), label:
                  {
                     Text("Done")
                 })

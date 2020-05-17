@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct HomeListView: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
     @State var showingAddItem = false
     @State var isShowingNewLocationFlow = false
     let greyColor = Color("medium_gray")
@@ -18,7 +20,7 @@ struct HomeListView: View {
             NewListButton(showAddLocation: $isShowingNewLocationFlow)
             Spacer()
             List(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
-                LocationCell(showingAddItem: self.$showingAddItem, location: ShoppingLocation(name: "Trader Joe's"))
+                LocationCell(showingAddItem: self.$showingAddItem, location: ShoppingLocation(name: "Trader Joe's")).environment(\.managedObjectContext, self.managedObjectContext)
             }
         }
     }
