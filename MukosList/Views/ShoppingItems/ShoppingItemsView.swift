@@ -64,7 +64,7 @@ struct ShoppingItemsView: View {
                 }) {
                     Image("filter")
                 }.padding(.leading, 16).padding(.top, 14)
-                List(shoppingItems, id: \.self) { shoppingItem in
+                FilteredList(filterKey: "shoppingList.name", filterValue: self.listName) { (shoppingItem: ShoppingItem) in
                     ItemCell(shoppingItem: shoppingItem)
                 }
             }

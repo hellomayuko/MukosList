@@ -24,6 +24,7 @@
 		2C893E672471F1620013DEE5 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C893E662471F1620013DEE5 /* ListCell.swift */; };
 		2C893E6C2471F4850013DEE5 /* ShoppingItemDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C893E6B2471F4850013DEE5 /* ShoppingItemDataManager.swift */; };
 		2C893E6E2471F5420013DEE5 /* ShoppingListDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C893E6D2471F5420013DEE5 /* ShoppingListDataManager.swift */; };
+		2C893E70247206C50013DEE5 /* FilteredList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C893E6F247206C50013DEE5 /* FilteredList.swift */; };
 		2CACDF1E245F848F00B66935 /* ShoppingLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CACDF1D245F848F00B66935 /* ShoppingLocation.swift */; };
 		2CF6D3132468A02A00206F68 /* AddListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF6D3122468A02A00206F68 /* AddListView.swift */; };
 		2CF6D3152468AD1800206F68 /* ShoppingItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF6D3142468AD1800206F68 /* ShoppingItemsView.swift */; };
@@ -70,6 +71,7 @@
 		2C893E662471F1620013DEE5 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		2C893E6B2471F4850013DEE5 /* ShoppingItemDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItemDataManager.swift; sourceTree = "<group>"; };
 		2C893E6D2471F5420013DEE5 /* ShoppingListDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListDataManager.swift; sourceTree = "<group>"; };
+		2C893E6F247206C50013DEE5 /* FilteredList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredList.swift; sourceTree = "<group>"; };
 		2CACDF1D245F848F00B66935 /* ShoppingLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingLocation.swift; sourceTree = "<group>"; };
 		2CF6D3122468A02A00206F68 /* AddListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListView.swift; sourceTree = "<group>"; };
 		2CF6D3142468AD1800206F68 /* ShoppingItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItemsView.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				2C893E682471F3200013DEE5 /* ShoppingItems */,
 				2C5D25E0245F603500BF1907 /* ContentView.swift */,
 				2C4E335A246F43100084D51B /* HomeListView.swift */,
+				2C893E6F247206C50013DEE5 /* FilteredList.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				2C893E672471F1620013DEE5 /* ListCell.swift in Sources */,
 				2CF6D3152468AD1800206F68 /* ShoppingItemsView.swift in Sources */,
 				2C893E612471EB140013DEE5 /* Date+Extensions.swift in Sources */,
+				2C893E70247206C50013DEE5 /* FilteredList.swift in Sources */,
 				2C5D25DF245F603500BF1907 /* SceneDelegate.swift in Sources */,
 				2C893E6E2471F5420013DEE5 /* ShoppingListDataManager.swift in Sources */,
 				2C893E652471F1480013DEE5 /* NewListButton.swift in Sources */,
