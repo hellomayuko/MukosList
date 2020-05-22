@@ -30,11 +30,10 @@ struct ShoppingListDataManager {
         
         do {
             let fetchAttempt = try context.fetch(fetchRequest)
-            guard let shoppingList = fetchAttempt.first else {
-                addList(name, context: context)
+            if let shoppingList = fetchAttempt.first {
                 return
             }
-            (shoppingList as! NSManagedObjectContext).setValue(name, forKey: "name")
+            addList(name, context: context)
         } catch {
           print(error)
         }
