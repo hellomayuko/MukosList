@@ -20,6 +20,7 @@ struct ShoppingItemsView: View {
     ) var shoppingItems: FetchedResults<ShoppingItem>
     
     @Binding var isBeingPresented: Bool
+    @Binding var isPresentedFromAddListView: Bool
     @State var listName: String
     @State var itemName: String = ""
     
@@ -28,12 +29,13 @@ struct ShoppingItemsView: View {
     var body: some View {
         VStack {
             HStack {
-                Button(action: {
-                    self.presentation.wrappedValue.dismiss()
-                }) {
-                    Text("Edit")
-                        .foregroundColor(Color("medium_gray"))
-                }.padding(.leading, 28)
+//                if(self.isPresentedFromAddListView) {
+                    Button(action: {
+                        self.presentation.wrappedValue.dismiss()
+                    }) {
+                        Text("Edit").foregroundColor(Color("medium_gray"))
+                    }.padding(.leading, 28)
+//                }
                 Spacer()
                 Text(self.listName)
                     .font(.title)
@@ -75,6 +77,6 @@ struct ShoppingItemsView: View {
 
 struct ShoppingItemsView_Previews: PreviewProvider {
     static var previews: some View {
-        ShoppingItemsView(isBeingPresented: .constant(true), listName: "Trader Joe's", itemName: "")
+        ShoppingItemsView(isBeingPresented: .constant(true), isPresentedFromAddListView: .constant(false), listName: "Trader Joe's", itemName: "")
     }
 }

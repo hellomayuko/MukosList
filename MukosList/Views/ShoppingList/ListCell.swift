@@ -22,7 +22,7 @@ struct ListCell: View {
             }) {
                 Image("add_yellow")
             }.sheet(isPresented: self.$presentAddItemView) {
-                ShoppingItemsView(isBeingPresented: self.$presentAddItemView, listName: self.list.name ?? "idk").environment(\.managedObjectContext, self.managedObjectContext)
+                ShoppingItemsView(isBeingPresented: self.$presentAddItemView, isPresentedFromAddListView:.constant(false), listName: self.list.name ?? "idk").environment(\.managedObjectContext, self.managedObjectContext)
             }
             VStack(alignment:.leading){
                 Text(list.name ?? "N/A")

@@ -47,7 +47,7 @@ struct AddListView: View {
                         self.dataManager.updateList(name: self.listName, context: self.managedObjectContext)
                     }).frame(height: 56.0).border(Color("light_gray"))
                 }.padding(.horizontal, 16)
-                NavigationLink(destination: ShoppingItemsView(isBeingPresented: self.$presentAddItemView, listName: listName).environment(\.managedObjectContext, self.managedObjectContext).onAppear(perform: {
+                NavigationLink(destination: ShoppingItemsView(isBeingPresented: self.$presentAddItemView, isPresentedFromAddListView: .constant(true), listName: listName).environment(\.managedObjectContext, self.managedObjectContext).onAppear(perform: {
                     self.dataManager.updateList(name: self.listName, context: self.managedObjectContext)
                 }), label: {
                     Text("Done")
