@@ -19,7 +19,7 @@ struct ShoppingItemsView: View {
         ]
     ) var shoppingItems: FetchedResults<ShoppingItem>
     
-    @Binding var isShowingNewListFlow: Bool
+    @Binding var isBeingPresented: Bool
     @State var listName: String
     @State var itemName: String = ""
     
@@ -40,7 +40,7 @@ struct ShoppingItemsView: View {
                     .foregroundColor(Color("medium_gray"))
                 Spacer()
                 Button(action: {
-                   self.isShowingNewListFlow.toggle()
+                   self.isBeingPresented.toggle()
                 }) {
                     Image(systemName: "xmark")
                 }.padding(.trailing, 28)
@@ -75,6 +75,6 @@ struct ShoppingItemsView: View {
 
 struct ShoppingItemsView_Previews: PreviewProvider {
     static var previews: some View {
-        ShoppingItemsView(isShowingNewListFlow: .constant(true), listName: "Trader Joe's", itemName: "")
+        ShoppingItemsView(isBeingPresented: .constant(true), listName: "Trader Joe's", itemName: "")
     }
 }

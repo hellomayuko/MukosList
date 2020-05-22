@@ -18,7 +18,7 @@ struct HomeListView: View {
         ]
     ) var shoppingLists: FetchedResults<ShoppingList>
     
-    @State var showingAddItem = false
+    @State var presentAddItemView = false
     @State var isShowingNewLocationFlow = false
     let greyColor = Color("medium_gray")
     
@@ -38,7 +38,7 @@ struct HomeListView: View {
             NewListButton(showAddLocation: $isShowingNewLocationFlow).environment(\.managedObjectContext, self.managedObjectContext)
             Spacer()
             List(shoppingLists, id: \.self) { shoppingList in
-                ListCell(showingAddItem: self.$showingAddItem, list: shoppingList).environment(\.managedObjectContext, self.managedObjectContext)
+                ListCell(presentAddItemView: self.$presentAddItemView, list: shoppingList).environment(\.managedObjectContext, self.managedObjectContext)
             }
         }.edgesIgnoringSafeArea(.top)
     }

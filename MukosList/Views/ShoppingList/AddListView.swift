@@ -13,7 +13,7 @@ struct AddListView: View {
     @Environment(\.presentationMode) var presentation
     
     @State var listName = ""
-    @Binding var isShowingNewListFlow: Bool
+    @Binding var presentAddItemView: Bool
     
     var dataManager = ShoppingListDataManager()
     
@@ -47,7 +47,7 @@ struct AddListView: View {
                         self.dataManager.updateList(name: self.listName, context: self.managedObjectContext)
                     }).frame(height: 56.0).border(Color("light_gray"))
                 }.padding(.horizontal, 16)
-                NavigationLink(destination: ShoppingItemsView(isShowingNewListFlow: self.$isShowingNewListFlow, listName: listName).environment(\.managedObjectContext, self.managedObjectContext).onAppear(perform: {
+                NavigationLink(destination: ShoppingItemsView(isBeingPresented: self.$presentAddItemView, listName: listName).environment(\.managedObjectContext, self.managedObjectContext).onAppear(perform: {
                     self.dataManager.updateList(name: self.listName, context: self.managedObjectContext)
                 }), label: {
                     Text("Done")
@@ -61,6 +61,6 @@ struct AddListView: View {
 
 struct AddListView_Previews: PreviewProvider {
     static var previews: some View {
-        AddListView(isShowingNewListFlow: .constant(true))
+        AddListView(presentAddItemView: .constant(true))
     }
 }

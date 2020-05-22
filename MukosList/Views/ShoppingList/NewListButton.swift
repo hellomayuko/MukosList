@@ -30,7 +30,7 @@ struct NewListButton: View {
         .cornerRadius(20)
         .shadow(radius: 3)
         .sheet(isPresented: self.$showAddLocation) {
-            AddListView(isShowingNewListFlow: self.$showAddLocation).environment(\.managedObjectContext, self.managedObjectContext)
+            AddListView(presentAddItemView: self.$showAddLocation).environment(\.managedObjectContext, self.managedObjectContext)
         }
     }
 }
