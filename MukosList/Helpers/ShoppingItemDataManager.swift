@@ -29,4 +29,10 @@ struct ShoppingItemDataManager {
             print(error.localizedDescription)
         }
     }
+    
+    func deleteItems(_ items:Set<ShoppingItem>, context: NSManagedObjectContext) {
+        for shoppingItem in items {
+            context.delete(shoppingItem)
+        }
+    }
 }

@@ -66,12 +66,19 @@ struct ShoppingItemsView: View {
                 }) {
                     Image("filter")
                 }.padding(.leading, 16).padding(.top, 14)
-                FilteredList(filterKey: "shoppingList.name", filterValue: self.listName) { (shoppingItem: ShoppingItem) in
-                    ItemCell(shoppingItem: shoppingItem)
+                FilteredList(filterKey: "shoppingList.name",
+                             filterValue: self.listName,
+                             performDeletion: self.performDelete)
+                             {(shoppingItem: ShoppingItem) in
+                                ItemCell(shoppingItem: shoppingItem)
                 }
             }
         }
         .navigationBarHidden(true).navigationBarTitle(Text("hiding!"))
+    }
+    
+    func performDelete(_ objects: Set<ShoppingItem>) {
+        self.dataManager.deleteItems(objects, context: self.managedObjectContext)
     }
 }
 
