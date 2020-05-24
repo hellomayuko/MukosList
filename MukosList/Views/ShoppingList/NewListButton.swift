@@ -10,11 +10,11 @@ import SwiftUI
 
 struct NewListButton: View {
     @Environment(\.managedObjectContext) var managedObjectContext
-    @Binding var showAddLocation: Bool
+    @Binding var showAddListView: Bool
     
     var body: some View {
         Button(action: {
-            self.showAddLocation.toggle()
+            self.showAddListView.toggle()
         }) {
             Image("add_gray")
                 .padding(.leading, 14.0)
@@ -29,8 +29,8 @@ struct NewListButton: View {
         .background(Color(.white))
         .cornerRadius(20)
         .shadow(radius: 3)
-        .sheet(isPresented: self.$showAddLocation) {
-            AddListView(presentAddItemView: self.$showAddLocation).environment(\.managedObjectContext, self.managedObjectContext)
+        .sheet(isPresented: self.$showAddListView) {
+            AddListView(showAddListView: self.$showAddListView).environment(\.managedObjectContext, self.managedObjectContext)
         }
     }
 }

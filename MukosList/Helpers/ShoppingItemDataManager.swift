@@ -11,9 +11,11 @@ import CoreData
 
 struct ShoppingItemDataManager {
     func addItem(_ itemName: String, toList list: String, quantity: Int, highPriority: Bool,  context: NSManagedObjectContext) {
+        let currentDate = Date()
+        
         let newItem = ShoppingItem(context:context)
         newItem.id = UUID()
-        newItem.lastUpdated = Date()
+        newItem.lastUpdated = currentDate
         
         newItem.itemName = itemName
         newItem.quantity = Int16(quantity)
@@ -21,6 +23,7 @@ struct ShoppingItemDataManager {
         
         let listDataManager = ShoppingListDataManager()
         if let shoppingList = listDataManager.fetchList(named:list, context: context) {
+            shoppingList.lastUpdated = currentDate
             newItem.shoppingList = shoppingList
         }
         do {
@@ -32,24 +35,26 @@ struct ShoppingItemDataManager {
     
     func deleteItems(_ items:Set<ShoppingItem>, context: NSManagedObjectContext) {
         for shoppingItem in items {
+            if let shoppingList = shoppingItem.shoppingList {
+                let listDataManager = ShoppingListDataManager()
+                listDataManager.updateTimestampFor(list: shoppingList, toDate: Date(), context: context)
+            }
+            
             context.delete(shoppingItem)
         }
     }
     
     func fetchUpdatedAtFor(list: String, context: NSManagedObjectContext) -> Date? {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "ShoppingItem")
-        fetchRequest.predicate = NSPredicate(format: "shoppingList.name == %@", list)
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "ShoppingList")
+        fetchRequest.predicate = NSPredicate(format: "name == %@", list)
         fetchRequest.fetchLimit = 1
-        
-        let updatedDatSort = NSSortDescriptor(key:"lastUpdated", ascending:false)
-        fetchRequest.sortDescriptors = [updatedDatSort]
         
         do {
             let fetchAttempt = try context.fetch(fetchRequest)
-            guard let item = fetchAttempt.first as? ShoppingItem else {
+            guard let list = fetchAttempt.first as? ShoppingList else {
                 return nil
             }
-            return item.lastUpdated
+            return list.lastUpdated
         } catch {
           print(error)
         }

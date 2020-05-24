@@ -12,9 +12,10 @@ import CoreData
 struct ShoppingListDataManager {
 
     func addList(_ listName: String, context: NSManagedObjectContext) {
-        let newItem = ShoppingList(context:context)
-        newItem.id = UUID()
-        newItem.name = listName
+        let newList = ShoppingList(context:context)
+        newList.id = UUID()
+        newList.name = listName
+        newList.lastUpdated = Date()
         
         do {
             try context.save()
@@ -50,10 +51,18 @@ struct ShoppingListDataManager {
                 return nil
             }
             return shoppingList as? ShoppingList
-//            (shoppingList as! NSManagedObjectContext).setValue(name, forKey: "name")
         } catch {
           print(error)
         }
         return nil
+    }
+    
+    func updateTimestampFor(list: ShoppingList, toDate date: Date, context: NSManagedObjectContext) {
+        list.lastUpdated = date
+        do {
+            try context.save()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }

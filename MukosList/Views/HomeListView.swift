@@ -14,12 +14,12 @@ struct HomeListView: View {
     @FetchRequest(
         entity: ShoppingList.entity(),
         sortDescriptors: [
-            NSSortDescriptor(keyPath: \ShoppingList.name, ascending: true),
+            NSSortDescriptor(keyPath: \ShoppingList.lastUpdated, ascending: false),
         ]
     ) var shoppingLists: FetchedResults<ShoppingList>
     
     @State var presentAddItemView = false
-    @State var isShowingNewLocationFlow = false
+    @State var showAddListView = false
     let greyColor = Color("medium_gray")
     
     var body: some View {
@@ -35,7 +35,7 @@ struct HomeListView: View {
                     .frame(width: 100, height: 100, alignment: .center)
                     .padding(.trailing, 24)
                 }.frame(height: 200).background(Color("orange"))
-            NewListButton(showAddLocation: $isShowingNewLocationFlow).environment(\.managedObjectContext, self.managedObjectContext)
+            NewListButton(showAddListView: $showAddListView).environment(\.managedObjectContext, self.managedObjectContext)
             Spacer()
             List(shoppingLists, id: \.self) { shoppingList in
                 ListCell(presentAddItemView: self.$presentAddItemView, list: shoppingList).environment(\.managedObjectContext, self.managedObjectContext)
