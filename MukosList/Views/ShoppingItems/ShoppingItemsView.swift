@@ -61,17 +61,20 @@ struct ShoppingItemsView: View {
             }
             Spacer()
             HStack(alignment: .top) {
+                /**
+                 V2: Filter Button
                 Button(action: {
                     //idk yet
                 }) {
                     Image("filter")
                 }.padding(.leading, 16).padding(.top, 14)
+                */
                 FilteredList(filterKey: "shoppingList.name",
                              filterValue: self.listName,
                              performDeletion: self.performDelete)
                              {(shoppingItem: ShoppingItem) in
                                 ItemCell(shoppingItem: shoppingItem)
-                }
+                    }.padding()
             }
         }
         .navigationBarHidden(true).navigationBarTitle(Text("hiding!"))
