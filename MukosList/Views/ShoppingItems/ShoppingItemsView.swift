@@ -15,7 +15,7 @@ struct ShoppingItemsView: View {
     @FetchRequest(
         entity: ShoppingItem.entity(),
         sortDescriptors: [
-            NSSortDescriptor(keyPath: \ShoppingItem.lastUpdated, ascending: true),
+            NSSortDescriptor(keyPath: \ShoppingItem.lastUpdated, ascending: false),
         ]
     ) var shoppingItems: FetchedResults<ShoppingItem>
     
@@ -37,9 +37,14 @@ struct ShoppingItemsView: View {
                     }.padding(.leading, 28)
 //                }
                 Spacer()
-                Text(self.listName)
+                VStack {
+                    Text(self.listName)
                     .font(.title)
                     .foregroundColor(Color("medium_gray"))
+                    Text(self.lastUpdatedString()).font(.footnote)
+                    .foregroundColor(Color("light_gray"))
+                }
+                
                 Spacer()
                 Button(action: {
                    self.isBeingPresented.toggle()
@@ -71,10 +76,13 @@ struct ShoppingItemsView: View {
                 */
                 FilteredList(filterKey: "shoppingList.name",
                              filterValue: self.listName,
-                             performDeletion: self.performDelete)
-                             {(shoppingItem: ShoppingItem) in
-                                ItemCell(shoppingItem: shoppingItem)
-                    }.padding()
+                             performDeletion: self.performDelete,
+                             sortDescriptors: [
+                                NSSortDescriptor(keyPath: \ShoppingItem.lastUpdated, ascending: false),
+                    ])
+                { (shoppingItem: ShoppingItem) in
+                    ItemCell(shoppingItem: shoppingItem)
+                }
             }
         }
         .navigationBarHidden(true).navigationBarTitle(Text("hiding!"))
@@ -82,6 +90,13 @@ struct ShoppingItemsView: View {
     
     func performDelete(_ objects: Set<ShoppingItem>) {
         self.dataManager.deleteItems(objects, context: self.managedObjectContext)
+    }
+    
+    func lastUpdatedString() -> String {
+        if let lastUpdatedDate = self.dataManager.fetchUpdatedAtFor(list: self.listName, context: self.managedObjectContext) {
+            return "Saved \(lastUpdatedDate.timeStampString)"
+        }
+        return ""
     }
 }
 

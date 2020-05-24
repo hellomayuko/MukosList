@@ -30,7 +30,7 @@ struct ShoppingListDataManager {
         
         do {
             let fetchAttempt = try context.fetch(fetchRequest)
-            if let shoppingList = fetchAttempt.first {
+            if fetchAttempt.first != nil {
                 return
             }
             addList(name, context: context)

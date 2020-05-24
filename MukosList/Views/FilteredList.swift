@@ -14,6 +14,7 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
     var fetchRequest: FetchRequest<T>
     var results: FetchedResults<T> { fetchRequest.wrappedValue }
     var performDeletion: (Set<T>) -> () = {_ in }
+    var sortDescriptors: [NSSortDescriptor]
 
     // this is our content closure; we'll call this once for each item in the list
     let content: (T) -> Content
@@ -26,10 +27,13 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
         }
     }
 
-    init(filterKey: String, filterValue: String, performDeletion: @escaping (Set<T>) -> (), @ViewBuilder content: @escaping (T) -> Content) {
-        fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors: [], predicate: NSPredicate(format: "%K == %@", filterKey, filterValue))
+    init(filterKey: String, filterValue: String, performDeletion: @escaping (Set<T>) -> (), sortDescriptors:[NSSortDescriptor], @ViewBuilder content: @escaping (T) -> Content) {
         self.content = content
         self.performDeletion = performDeletion
+        self.sortDescriptors = sortDescriptors
+        
+        fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors:self.sortDescriptors, predicate: NSPredicate(format: "%K == %@", filterKey, filterValue))
+
     }
     
     func deleteObjects(_ offsets: IndexSet) {

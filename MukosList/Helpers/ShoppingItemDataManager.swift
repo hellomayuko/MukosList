@@ -35,4 +35,24 @@ struct ShoppingItemDataManager {
             context.delete(shoppingItem)
         }
     }
+    
+    func fetchUpdatedAtFor(list: String, context: NSManagedObjectContext) -> Date? {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "ShoppingItem")
+        fetchRequest.predicate = NSPredicate(format: "shoppingList.name == %@", list)
+        fetchRequest.fetchLimit = 1
+        
+        let updatedDatSort = NSSortDescriptor(key:"lastUpdated", ascending:false)
+        fetchRequest.sortDescriptors = [updatedDatSort]
+        
+        do {
+            let fetchAttempt = try context.fetch(fetchRequest)
+            guard let item = fetchAttempt.first as? ShoppingItem else {
+                return nil
+            }
+            return item.lastUpdated
+        } catch {
+          print(error)
+        }
+        return nil
+    }
 }
