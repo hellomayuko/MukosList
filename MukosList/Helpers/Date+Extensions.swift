@@ -17,4 +17,21 @@ extension Date {
             return dateFormatter.string(from: self)
         }
     }
+    
+    var greeting: String {
+        let calendar = Calendar.current
+        let hourComponent = calendar.dateComponents([.hour], from: self)
+        guard let hour = hourComponent.hour else {
+            return "Hello"
+        }
+        if(hour < 12) {
+            return "Good Morning"
+        } else if(hour < 16) {
+            return "Good Afternoon"
+        } else if(hour < 24) {
+            return "Good Evening"
+        } else {
+            return "Hello"
+        }
+    }
 }

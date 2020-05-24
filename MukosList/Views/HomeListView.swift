@@ -25,7 +25,7 @@ struct HomeListView: View {
     var body: some View {
         VStack {
             HStack(alignment: .center) {
-                Text("Hello, Mayuko")
+                Text("\(Date().greeting), Mayuko")
                     .padding(.leading, 24)
                     .font(.title)
                     .foregroundColor(Color.white)
