@@ -33,12 +33,18 @@ struct ListCell: View {
             }
             .padding(.leading, 15.0)
             Spacer()
-            Button(action: {
-                //edit options
-            }) {
-                Image("ellipsis")
-            }
         }
         .frame(height: 60.0)
     }
 }
+
+//struct ListCell_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//        let shoppingList = ShoppingList()
+//        shoppingList.name = "Test List"
+//        shoppingList.shoppingItems = ["Blueberry", "Strawberry"]
+//        
+//        return ListCell(presentAddItemView: .constant(true), list: shoppingList)
+//    }
+//}
