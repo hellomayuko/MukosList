@@ -9,9 +9,7 @@
 import SwiftUI
 
 struct ListCell: View {
-    @Environment(\.managedObjectContext) var managedObjectContext
-    
-    @Binding var presentAddItemView: Bool
+        @Binding var presentAddItemView: Bool
     var list: ShoppingList
     @State var notShowingNewListFlow = false
     
@@ -27,18 +25,24 @@ struct ListCell: View {
             }
             .padding(.leading, 15.0)
             Spacer()
+            Button(action: {
+                
+            }) {
+                Image("ellipsis").padding(.trailing, 30) //this padding is to make sure the ellipses show since we did a weird thing to hide the ">" symbol that shows because it's a NavigationLink. shrug
+            }
         }
         .frame(height: 60.0)
     }
 }
 
-//struct ListCell_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-//        let shoppingList = ShoppingList()
-//        shoppingList.name = "Test List"
-//        shoppingList.shoppingItems = ["Blueberry", "Strawberry"]
-//
-//        return ListCell(presentAddItemView: .constant(true), list: shoppingList)
-//    }
-//}
+struct ListCell_Previews: PreviewProvider {
+    static var previews: some View {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        let dataManager = ShoppingListDataManager()
+        dataManager.addList("Test List", context: context)
+        let shoppingList = dataManager.fetchList(named: "Test List", context: context)
+
+        return ListCell(presentAddItemView: .constant(true), list: shoppingList!)
+    }
+}

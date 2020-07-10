@@ -28,14 +28,14 @@ struct AddListView: View {
                 Spacer()
                 Text("New List")
                 .font(.title)
-                .foregroundColor(Color("medium_gray"))
+                .foregroundColor(Color("gray_medium"))
                 Spacer()
                 Text("")
             }.padding(.top, 28)
             Spacer()
             Text("Give your list a name")
                 .font(.headline)
-                .foregroundColor(Color("medium_gray"))
+                .foregroundColor(Color("gray_medium"))
                 .padding(.bottom, 12.0)
             HStack {
                 TextField("Trader Joe's...", text: $listName, onEditingChanged: {_ in
@@ -44,7 +44,7 @@ struct AddListView: View {
                     //Call update instead of add just in case we already
                     //have a list of the same name
                     self.dataManager.updateList(name: self.listName, context: self.managedObjectContext)
-                }).frame(height: 56.0).border(Color("light_gray"))
+                }).frame(height: 56.0).border(Color("gray_light"))
             }.padding(.horizontal, 16)
             Button(action: {
                 self.dataManager.updateList(name: self.listName, context: self.managedObjectContext)

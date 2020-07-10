@@ -21,6 +21,7 @@ struct ShoppingItemsView: View {
     
     @Binding var isBeingPresented: Bool
     @Binding var isPresentedFromAddListView: Bool
+    @Binding var navigationBarHidden: Bool
     @State var listName: String
     @State var itemName: String = ""
     
@@ -30,7 +31,7 @@ struct ShoppingItemsView: View {
         VStack {
             HStack {
                 Text(self.lastUpdatedString()).font(.footnote)
-                    .foregroundColor(Color("light_gray")).padding(.leading, 19)
+                    .foregroundColor(Color("gray_light")).padding(.leading, 19)
                 Spacer()
             }
             HStack {
@@ -66,12 +67,14 @@ struct ShoppingItemsView: View {
                     ItemCell(shoppingItem: shoppingItem)
                 }
             }
+        }.onAppear {
+            self.navigationBarHidden = false
         }
         .navigationBarTitle(Text(self.listName))
         .navigationBarItems(trailing:
             Button("Edit") {
                 print("Edit tapped!")
-            }.foregroundColor(Color("medium_gray"))
+            }.foregroundColor(Color("gray_medium"))
         )
     }
     
@@ -87,8 +90,8 @@ struct ShoppingItemsView: View {
     }
 }
 
-struct ShoppingItemsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ShoppingItemsView(isBeingPresented: .constant(true), isPresentedFromAddListView: .constant(false), listName: "Trader Joe's", itemName: "")
-    }
-}
+//struct ShoppingItemsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ShoppingItemsView(managedObjectContext: .constant(true), presentation: .constant(false), shoppingItems: "Trader Joe's", isBeingPresented: "", isPresentedFromAddListView: .constant(false))
+//    }
+//}

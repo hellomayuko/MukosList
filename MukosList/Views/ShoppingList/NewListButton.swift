@@ -16,15 +16,16 @@ struct NewListButton: View {
         Button(action: {
             self.showAddListView.toggle()
         }) {
-            Image("add_gray")
-                .padding(.leading, 14.0)
-            Text("Create New List")
-                .font(.headline)
-                .padding(.trailing, 160.0)
-                .padding(.leading, 18.0)
-                .foregroundColor(Color("medium_gray"))
+            HStack {
+                Image("add_gray").padding(.leading, 14)
+                Text("Create New List")
+                    .font(.headline)
+                    .padding(.trailing, 160.0)
+                    .padding(.leading, 15.0)
+                    .foregroundColor(Color("gray_mediumDark"))
+                Spacer()
+            }
         }
-        .padding(.horizontal, 16.0)
         .frame(height: 72.0)
         .background(Color(.white))
         .cornerRadius(20)
@@ -32,5 +33,12 @@ struct NewListButton: View {
         .sheet(isPresented: self.$showAddListView) {
             AddListView(showAddListView: self.$showAddListView).environment(\.managedObjectContext, self.managedObjectContext)
         }
+    }
+}
+
+struct NewListButton_Previews: PreviewProvider {
+    static var previews: some View {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        return NewListButton(showAddListView: .constant(true)).environment(\.managedObjectContext, context)
     }
 }
