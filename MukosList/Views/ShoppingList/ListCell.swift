@@ -17,13 +17,7 @@ struct ListCell: View {
     
     var body: some View {
         HStack {
-            Button(action: {
-                self.presentAddItemView = true
-            }) {
-                Image("add_yellow")
-            }.sheet(isPresented: self.$presentAddItemView) {
-                ShoppingItemsView(isBeingPresented: self.$presentAddItemView, isPresentedFromAddListView:.constant(false), listName: self.list.name ?? "idk").environment(\.managedObjectContext, self.managedObjectContext)
-            }
+            Image("add_yellow")
             VStack(alignment:.leading){
                 Text(list.name ?? "N/A")
                     .font(.headline)
@@ -44,7 +38,7 @@ struct ListCell: View {
 //        let shoppingList = ShoppingList()
 //        shoppingList.name = "Test List"
 //        shoppingList.shoppingItems = ["Blueberry", "Strawberry"]
-//        
+//
 //        return ListCell(presentAddItemView: .constant(true), list: shoppingList)
 //    }
 //}

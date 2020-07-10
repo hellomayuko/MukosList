@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C367609249D873C002E3847 /* CheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C367608249D873C002E3847 /* CheckmarkView.swift */; };
 		2C4E335B246F43100084D51B /* HomeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E335A246F43100084D51B /* HomeListView.swift */; };
 		2C4E33B0246F537A0084D51B /* MukosList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E33AE246F537A0084D51B /* MukosList.xcdatamodeld */; };
 		2C5D25DD245F603500BF1907 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D25DC245F603500BF1907 /* AppDelegate.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C367608249D873C002E3847 /* CheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkView.swift; sourceTree = "<group>"; };
 		2C4E335A246F43100084D51B /* HomeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListView.swift; sourceTree = "<group>"; };
 		2C4E33AF246F537A0084D51B /* MukosList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MukosList.xcdatamodel; sourceTree = "<group>"; };
 		2C5D25D9245F603500BF1907 /* MukosList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MukosList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +193,7 @@
 			children = (
 				2CF6D3142468AD1800206F68 /* ShoppingItemsView.swift */,
 				2C893E622471EF790013DEE5 /* ShoppingItemCell.swift */,
+				2C367608249D873C002E3847 /* CheckmarkView.swift */,
 			);
 			path = ShoppingItems;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				2C5D25DF245F603500BF1907 /* SceneDelegate.swift in Sources */,
 				2C893E6E2471F5420013DEE5 /* ShoppingListDataManager.swift in Sources */,
 				2C893E652471F1480013DEE5 /* NewListButton.swift in Sources */,
+				2C367609249D873C002E3847 /* CheckmarkView.swift in Sources */,
 				2C893E6C2471F4850013DEE5 /* ShoppingItemDataManager.swift in Sources */,
 				2CF6D3132468A02A00206F68 /* AddListView.swift in Sources */,
 				2CACDF1E245F848F00B66935 /* ShoppingLocation.swift in Sources */,

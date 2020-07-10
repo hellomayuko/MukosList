@@ -29,39 +29,21 @@ struct ShoppingItemsView: View {
     var body: some View {
         VStack {
             HStack {
-//                if(self.isPresentedFromAddListView) {
-                    Button(action: {
-                        self.presentation.wrappedValue.dismiss()
-                    }) {
-                        Text("Edit").foregroundColor(Color("medium_gray"))
-                    }.padding(.leading, 28)
-//                }
+                Text(self.lastUpdatedString()).font(.footnote)
+                    .foregroundColor(Color("light_gray")).padding(.leading, 19)
                 Spacer()
-                VStack {
-                    Text(self.listName)
-                    .font(.title)
-                    .foregroundColor(Color("medium_gray"))
-                    Text(self.lastUpdatedString()).font(.footnote)
-                    .foregroundColor(Color("light_gray"))
-                }
-                
-                Spacer()
-                Button(action: {
-                   self.isBeingPresented.toggle()
-                }) {
-                    Image(systemName: "xmark")
-                }.padding(.trailing, 28)
-            }.padding(.bottom, 28).padding(.top, 18)
-            Spacer()
+            }
             HStack {
                 Spacer().frame(width:24)
-                TextField("Cabbage, Cake, etc.", text: $itemName, onEditingChanged: {_ in
+                TextField("Enter items", text: $itemName, onEditingChanged: {_ in
                     print("added \(self.itemName)")
                 }, onCommit: {
                     self.dataManager.addItem(self.itemName, toList: self.listName, quantity: 1, highPriority: false, context: self.managedObjectContext)
+                    self.itemName = ""
                 })
+                    .font(.title)
                     .frame(height: 56.0)
-                    .border(Color("orange"))
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
                 Spacer().frame(width:24)
             }
             Spacer()
@@ -85,7 +67,12 @@ struct ShoppingItemsView: View {
                 }
             }
         }
-        .navigationBarHidden(true).navigationBarTitle(Text("hiding!"))
+        .navigationBarTitle(Text(self.listName))
+        .navigationBarItems(trailing:
+            Button("Edit") {
+                print("Edit tapped!")
+            }.foregroundColor(Color("medium_gray"))
+        )
     }
     
     func performDelete(_ objects: Set<ShoppingItem>) {

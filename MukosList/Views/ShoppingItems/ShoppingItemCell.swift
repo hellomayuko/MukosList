@@ -9,10 +9,11 @@
 import SwiftUI
 
 struct ItemCell: View {
-    var shoppingItem: ShoppingItem
+    @State var shoppingItem: ShoppingItem
 
     var body: some View {
         HStack {
+            CheckmarkView(isChecked: shoppingItem.purchased)
             VStack(alignment:.leading) {
                 Text(shoppingItem.itemName ?? "idk")
                     .font(.headline)
@@ -22,11 +23,11 @@ struct ItemCell: View {
                     .foregroundColor(Color("text_grey"))
             }
             Spacer()
-            Button(action: {
-                //edit options
-            }) {
-                Image("ellipsis")
-            }
+//            Button(action: {
+//                //edit options
+//            }) {
+//                Image("ellipsis")
+//            }
         }.frame(height: 50.0)
     }
 }
