@@ -8,59 +8,67 @@
 
 import SwiftUI
 
+enum SetupState {
+    case naming
+    case location
+    case sharing
+}
+
 struct AddListView: View {
+    
     @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.presentationMode) var presentation
     
-    @State var listName = ""
     @Binding var showAddListView: Bool
+    @State var setupState: SetupState = .naming
+    @State var listName = ""
     
-    var dataManager = ShoppingListDataManager()
-    
+    var titleForCurrentState: String {
+        if(setupState == .naming) {
+            return "Make a New List"
+        } else if(setupState == .location) {
+            return "Set Your Store"
+        } else {
+            return "Share Your List"
+        }
+    }
+
     var body: some View {
         VStack {
+            Spacer().frame(height:16)
             HStack {
-                Button(action: {
-                    self.presentation.wrappedValue.dismiss()
-                }) {
-                    Image(systemName: "chevron.left")
-                }.padding(.leading, 28)
-                Spacer()
-                Text("New List")
-                .font(.title)
-                .foregroundColor(Color("gray_medium"))
-                Spacer()
-                Text("")
-            }.padding(.top, 28)
-            Spacer()
-            Text("Give your list a name")
-                .font(.headline)
-                .foregroundColor(Color("gray_medium"))
-                .padding(.bottom, 12.0)
-            HStack {
-                TextField("Trader Joe's...", text: $listName, onEditingChanged: {_ in
-                    print("added \(self.listName)")
-                }, onCommit: {
-                    //Call update instead of add just in case we already
-                    //have a list of the same name
-                    self.dataManager.updateList(name: self.listName, context: self.managedObjectContext)
-                }).frame(height: 56.0).border(Color("gray_light"))
-            }.padding(.horizontal, 16)
-            Button(action: {
-                self.dataManager.updateList(name: self.listName, context: self.managedObjectContext)
-                self.showAddListView.toggle()
-            }) {
-                Text("Done")
-            }.padding(.leading, 28)
-//            NavigationLink(destination: ShoppingItemsView(isBeingPresented: self.$presentAddItemView, isPresentedFromAddListView: .constant(true), listName: listName).environment(\.managedObjectContext, self.managedObjectContext).onAppear(perform: {
-//                self.dataManager.updateList(name: self.listName, context: self.managedObjectContext)
-//            }), label: {
-//                Text("Done")
-//            })
-            Spacer()
-        }.navigationBarHidden(true).navigationBarTitle(Text("hiding!"))
+                Rectangle().frame(height:8).foregroundColor(colorFor(setupState: .naming))
+                Rectangle().frame(height:8).foregroundColor(colorFor(setupState: .location))
+                Rectangle().frame(height:8).foregroundColor(colorFor(setupState: .sharing))
+            }.padding(.horizontal)
+            ZStack {
+                HStack {
+                    Button(action: {
+                        self.presentation.wrappedValue.dismiss()
+                    }) {
+                        Image("back").renderingMode(.template).foregroundColor(Color("gray_dark"))
+                    }.padding(.leading, 28)
+                    Spacer()
+                }
+                Text(titleForCurrentState)
+                    .font(.system(size:24, weight:.semibold, design:.default))
+                    .foregroundColor(Color("gray_dark"))
+            }.padding(.vertical)
+            if(self.setupState == .naming) {
+                NameListView(setupState: self.$setupState, listName: self.$listName)
+            } else {
+                Text("not setup yet")
+            }
+        }
     }
     
+    func colorFor(setupState: SetupState) -> Color {
+        if(setupState == self.setupState) {
+            return Color("orange")
+        } else {
+            return Color("gray_light")
+        }
+    }
 }
 
 

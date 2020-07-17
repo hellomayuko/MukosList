@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C367609249D873C002E3847 /* CheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C367608249D873C002E3847 /* CheckmarkView.swift */; };
+		2C49BBB024C2538D00B76DFB /* NameListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C49BBAF24C2538D00B76DFB /* NameListView.swift */; };
 		2C4E335B246F43100084D51B /* HomeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E335A246F43100084D51B /* HomeListView.swift */; };
 		2C4E33B0246F537A0084D51B /* MukosList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E33AE246F537A0084D51B /* MukosList.xcdatamodeld */; };
 		2C5D25DD245F603500BF1907 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5D25DC245F603500BF1907 /* AppDelegate.swift */; };
@@ -51,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		2C367608249D873C002E3847 /* CheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkView.swift; sourceTree = "<group>"; };
+		2C49BBAF24C2538D00B76DFB /* NameListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameListView.swift; sourceTree = "<group>"; };
 		2C4E335A246F43100084D51B /* HomeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListView.swift; sourceTree = "<group>"; };
 		2C4E33AF246F537A0084D51B /* MukosList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MukosList.xcdatamodel; sourceTree = "<group>"; };
 		2C5D25D9245F603500BF1907 /* MukosList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MukosList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -207,6 +209,7 @@
 				2C893E642471F1480013DEE5 /* NewListButton.swift */,
 				2CF6D3122468A02A00206F68 /* AddListView.swift */,
 				2C893E662471F1620013DEE5 /* ListCell.swift */,
+				2C49BBAF24C2538D00B76DFB /* NameListView.swift */,
 			);
 			path = ShoppingList;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				2C4E335B246F43100084D51B /* HomeListView.swift in Sources */,
 				2C893E672471F1620013DEE5 /* ListCell.swift in Sources */,
 				2CF6D3152468AD1800206F68 /* ShoppingItemsView.swift in Sources */,
+				2C49BBB024C2538D00B76DFB /* NameListView.swift in Sources */,
 				2C893E612471EB140013DEE5 /* Date+Extensions.swift in Sources */,
 				2C893E70247206C50013DEE5 /* FilteredList.swift in Sources */,
 				2C5D25DF245F603500BF1907 /* SceneDelegate.swift in Sources */,
