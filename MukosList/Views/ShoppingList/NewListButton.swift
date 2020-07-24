@@ -10,7 +10,7 @@ import SwiftUI
 
 struct NewListButton: View {
     @Environment(\.managedObjectContext) var managedObjectContext
-    @Binding var showAddListView: Bool
+    @State var showAddListView: Bool = false
     
     var body: some View {
         Button(action: {
@@ -31,7 +31,7 @@ struct NewListButton: View {
         .cornerRadius(20)
         .shadow(radius: 3)
         .sheet(isPresented: self.$showAddListView) {
-            AddListView(showAddListView: self.$showAddListView).environment(\.managedObjectContext, self.managedObjectContext)
+            AddListView().environment(\.managedObjectContext, self.managedObjectContext)
         }
     }
 }
@@ -39,6 +39,6 @@ struct NewListButton: View {
 struct NewListButton_Previews: PreviewProvider {
     static var previews: some View {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        return NewListButton(showAddListView: .constant(true)).environment(\.managedObjectContext, context)
+        return NewListButton().environment(\.managedObjectContext, context)
     }
 }

@@ -16,7 +16,7 @@ struct NameListView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @Binding var setupState: SetupState
-    @Binding var listName: String
+    @State private var listName: String = ""
     
     @State var actionButtonState: NameListAction = .skip
     
@@ -29,13 +29,13 @@ struct NameListView: View {
                 .font(.headline)
                 .foregroundColor(Color("gray_dark"))
                 .padding(.bottom, 12.0)
-            TextField("", text: $listName, onEditingChanged: {text in
+            TextField("", text: $listName, onEditingChanged: {_ in
                 self.actionButtonState = .create
             }, onCommit: {
-                //Call update instead of add just in case we already
-                //have a list of the same name
+//                Call update instead of add just in case we already
+//                have a list of the same name
                 self.dataManager.updateList(name: self.listName, context: self.managedObjectContext)
-            }).frame(height: 56.0)
+            }) .frame(height: 56.0)
                 .padding(.horizontal, 40)
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color("gray_dark"))
@@ -49,6 +49,7 @@ struct NameListView: View {
                 if(self.actionButtonState == .create) {
                     self.dataManager.updateList(name: self.listName, context: self.managedObjectContext)
                 }
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
                 self.setupState = .location
             }) {
                 if(self.actionButtonState == .skip) {
@@ -75,6 +76,6 @@ struct NameListView: View {
 
 struct NameListView_Previews: PreviewProvider {
     static var previews: some View {
-        NameListView(setupState: .constant(.naming), listName: .constant("Vons"))
+        NameListView(setupState: .constant(.naming))
     }
 }
