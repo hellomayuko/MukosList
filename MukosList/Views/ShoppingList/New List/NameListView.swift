@@ -16,7 +16,7 @@ struct NameListView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @Binding var setupState: SetupState
-    @State private var listName: String = ""
+    @Binding var listName: String
     
     @State var actionButtonState: NameListAction = .skip
     
@@ -76,6 +76,6 @@ struct NameListView: View {
 
 struct NameListView_Previews: PreviewProvider {
     static var previews: some View {
-        NameListView(setupState: .constant(.naming))
+        NameListView(setupState: .constant(.naming), listName: .constant("Vons"))
     }
 }

@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct NewListButton: View {
+struct CreateListButton: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @State var showAddListView: Bool = false
     
@@ -36,9 +36,9 @@ struct NewListButton: View {
     }
 }
 
-struct NewListButton_Previews: PreviewProvider {
+struct CreateListButton_Previews: PreviewProvider {
     static var previews: some View {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        return NewListButton().environment(\.managedObjectContext, context)
+        return CreateListButton().environment(\.managedObjectContext, context)
     }
 }

@@ -68,7 +68,7 @@ struct HomeListView: View {
                     Image("filter")
                 }.buttonStyle(PlainButtonStyle())
             }.padding(.horizontal, 24).padding(.top, 34).padding(.bottom, 24)
-            NewListButton().environment(\.managedObjectContext, self.managedObjectContext).padding(.horizontal, 16)
+            CreateListButton().environment(\.managedObjectContext, self.managedObjectContext).padding(.horizontal, 16)
             Spacer()
             List(shoppingLists, id: \.self) { shoppingList in
                 Button(action: {

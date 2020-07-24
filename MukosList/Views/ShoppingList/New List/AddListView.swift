@@ -29,6 +29,7 @@ struct AddListView: View {
     @Environment(\.presentationMode) var presentation
         
     @State var setupState: SetupState = .naming
+    @State var listName: String = ""
     
     var body: some View {
         VStack {
@@ -41,7 +42,13 @@ struct AddListView: View {
             ZStack {
                 HStack {
                     Button(action: {
-                        self.presentation.wrappedValue.dismiss()
+                        if(self.setupState == .naming) {
+                            self.presentation.wrappedValue.dismiss()
+                        } else if(self.setupState == .location) {
+                            self.setupState = .naming
+                        } else {
+                            self.setupState = .location
+                        }
                     }) {
                         Image("back").renderingMode(.template).foregroundColor(Color("gray_dark"))
                     }.padding(.leading, 28)
@@ -52,9 +59,13 @@ struct AddListView: View {
                     .foregroundColor(Color("gray_dark"))
             }.padding(.vertical)
             if(setupState == .naming) {
-                NameListView(setupState: self.$setupState)
+                NameListView(setupState: self.$setupState,
+                             listName: self.$listName)
+            } else if(setupState == .location) {
+                ChooseStoreView(setupState: self.$setupState,
+                                listName: self.$listName)
             } else {
-                Text("henlo")
+                Text("haven't made this yet")
             }
         }
     }
