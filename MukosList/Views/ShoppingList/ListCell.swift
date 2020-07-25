@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ListCell: View {
-        @Binding var presentAddItemView: Bool
+    @Binding var presentAddItemView: Bool
     var list: ShoppingList
     @State var notShowingNewListFlow = false
     

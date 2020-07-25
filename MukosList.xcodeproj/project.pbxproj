@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C12ED8024CC0A2F00B137FA /* StoreLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C12ED7F24CC0A2F00B137FA /* StoreLocationCell.swift */; };
 		2C367609249D873C002E3847 /* CheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C367608249D873C002E3847 /* CheckmarkView.swift */; };
 		2C49BBB024C2538D00B76DFB /* NameListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C49BBAF24C2538D00B76DFB /* NameListView.swift */; };
 		2C4E335B246F43100084D51B /* HomeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E335A246F43100084D51B /* HomeListView.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C12ED7F24CC0A2F00B137FA /* StoreLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocationCell.swift; sourceTree = "<group>"; };
 		2C367608249D873C002E3847 /* CheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkView.swift; sourceTree = "<group>"; };
 		2C49BBAF24C2538D00B76DFB /* NameListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameListView.swift; sourceTree = "<group>"; };
 		2C4E335A246F43100084D51B /* HomeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListView.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				2CF6D3122468A02A00206F68 /* AddListView.swift */,
 				2C49BBAF24C2538D00B76DFB /* NameListView.swift */,
 				2CDCEA1424CB867B00BF2E5F /* ChooseStoreView.swift */,
+				2C12ED7F24CC0A2F00B137FA /* StoreLocationCell.swift */,
 			);
 			path = "New List";
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				2C893E5F2471E9E90013DEE5 /* ShoppingItem+Extensions.swift in Sources */,
 				2C5D25DD245F603500BF1907 /* AppDelegate.swift in Sources */,
 				2C4E33B0246F537A0084D51B /* MukosList.xcdatamodeld in Sources */,
+				2C12ED8024CC0A2F00B137FA /* StoreLocationCell.swift in Sources */,
 				2C4E335B246F43100084D51B /* HomeListView.swift in Sources */,
 				2C893E672471F1620013DEE5 /* ListCell.swift in Sources */,
 				2CF6D3152468AD1800206F68 /* ShoppingItemsView.swift in Sources */,

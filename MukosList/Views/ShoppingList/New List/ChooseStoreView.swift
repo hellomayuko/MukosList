@@ -44,7 +44,7 @@ struct ChooseStoreView: View {
                     .font(.system(size:18, weight:.regular, design:.default))
             }.padding()
             List(nearbyStoresFetcher.stores) { store in
-                Text(store.address)
+                StoreLocationCell(store: store).padding(.horizontal, 4).padding(.vertical, 8)
             }
         }.onAppear {
             self.nearbyStoresFetcher.storeName = self.listName
@@ -56,6 +56,12 @@ struct ChooseStoreView: View {
 
 struct ChooseStoreView_Previews: PreviewProvider {
     static var previews: some View {
-        ChooseStoreView(setupState: .constant(.location), listName: .constant("99 Ranch"))
+        let fetcher = NearbyStoresFetcher()
+        let store = Store()
+        store.name = "HMart"
+        store.address = "123 ABC St."
+        store.distanceFromZip = "Calculating..."
+        fetcher.stores = [store]
+        return ChooseStoreView(setupState: .constant(.location), listName: .constant("99 Ranch"), nearbyStoresFetcher: fetcher)
     }
 }
