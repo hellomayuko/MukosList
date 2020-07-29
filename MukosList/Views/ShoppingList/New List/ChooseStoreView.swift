@@ -9,9 +9,9 @@
 import SwiftUI
 
 struct ChooseStoreView: View {
-    
     @Binding var setupState: SetupState
     @Binding var listName: String
+    @Binding var chosenStore: Store
     
     @ObservedObject var nearbyStoresFetcher = NearbyStoresFetcher()
     
@@ -44,7 +44,9 @@ struct ChooseStoreView: View {
                     .font(.system(size:18, weight:.regular, design:.default))
             }.padding()
             List(nearbyStoresFetcher.stores) { store in
-                StoreLocationCell(store: store).padding(.horizontal, 4).padding(.vertical, 8)
+                StoreLocationCell(store: store, setupState: self.$setupState, listName: self.$listName, chosenStore: self.$chosenStore)
+                    .padding(.horizontal, 4)
+                    .padding(.vertical, 8)
             }
         }.onAppear {
             self.nearbyStoresFetcher.storeName = self.listName
@@ -62,6 +64,6 @@ struct ChooseStoreView_Previews: PreviewProvider {
         store.address = "123 ABC St."
         store.distanceFromZip = "Calculating..."
         fetcher.stores = [store]
-        return ChooseStoreView(setupState: .constant(.location), listName: .constant("99 Ranch"), nearbyStoresFetcher: fetcher)
+        return ChooseStoreView(setupState: .constant(.location), listName: .constant("99 Ranch"), chosenStore: .constant(store))
     }
 }

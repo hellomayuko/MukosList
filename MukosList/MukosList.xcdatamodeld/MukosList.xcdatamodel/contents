@@ -14,9 +14,19 @@
         <attribute name="lastUpdated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="shoppingItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ShoppingItem" inverseName="shoppingList" inverseEntity="ShoppingItem"/>
+        <relationship name="store" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ShoppingStore" inverseName="list" inverseEntity="ShoppingStore"/>
+    </entity>
+    <entity name="ShoppingStore" representedClassName="ShoppingStore" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="list" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ShoppingList" inverseName="store" inverseEntity="ShoppingList"/>
     </entity>
     <elements>
         <element name="ShoppingItem" positionX="200.9140625" positionY="-63.10546875" width="128" height="148"/>
-        <element name="ShoppingList" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="ShoppingList" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="ShoppingStore" positionX="72" positionY="0" width="128" height="133"/>
     </elements>
 </model>

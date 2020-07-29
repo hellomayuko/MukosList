@@ -14,6 +14,7 @@ class Store: Identifiable, ObservableObject {
     var id = UUID()
     var name: String = ""
     var address: String = ""
+    var coordinates: CLLocationCoordinate2D = CLLocationCoordinate2D()
     @Published var distanceFromZip: String = ""
 }
 
@@ -76,7 +77,8 @@ class NearbyStoresFetcher: NSObject, ObservableObject {
             response.mapItems.forEach { (mapItem) in
                 guard let name = mapItem.name,
                     let streetNumber = mapItem.placemark.subThoroughfare,
-                    let streetName = mapItem.placemark.thoroughfare else {
+                    let streetName = mapItem.placemark.thoroughfare,
+                    let coordinates = mapItem.placemark.location?.coordinate else {
                     return
                 }
                                 
@@ -84,6 +86,7 @@ class NearbyStoresFetcher: NSObject, ObservableObject {
                 newStore.name = name
                 newStore.address = "\(streetNumber) \(streetName)"
                 newStore.distanceFromZip = "Calculating..."
+                newStore.coordinates = coordinates
                 newStores.append(newStore)
                 
                 self.calculateRouteForStore(newStore, atMapItem: mapItem)

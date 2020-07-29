@@ -46,9 +46,6 @@ struct NameListView: View {
                 .padding(.top, -20)
                 .foregroundColor(Color("gray_dark"))
             Button(action: {
-                if(self.actionButtonState == .create) {
-                    self.dataManager.updateList(name: self.listName, context: self.managedObjectContext)
-                }
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
                 self.setupState = .location
             }) {

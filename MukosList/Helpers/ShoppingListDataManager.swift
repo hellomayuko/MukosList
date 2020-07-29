@@ -8,14 +8,24 @@
 
 import Foundation
 import CoreData
+import MapKit
 
 struct ShoppingListDataManager {
-
-    func addList(_ listName: String, context: NSManagedObjectContext) {
+    
+    func addNew(list listName: String, store: Store, context: NSManagedObjectContext) {
         let newList = ShoppingList(context:context)
         newList.id = UUID()
         newList.name = listName
         newList.lastUpdated = Date()
+        
+        let newStore = ShoppingStore(context:context)
+        newStore.id = UUID()
+        newStore.name = store.name
+        newStore.address = store.address
+        newStore.latitude = store.coordinates.latitude
+        newStore.longitude = store.coordinates.longitude
+        
+        newList.store = newStore
         
         do {
             try context.save()
@@ -34,7 +44,7 @@ struct ShoppingListDataManager {
             if fetchAttempt.first != nil {
                 return
             }
-            addList(name, context: context)
+//            addList(name, context: context)
         } catch {
           print(error)
         }

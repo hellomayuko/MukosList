@@ -39,10 +39,10 @@ struct ListCell_Previews: PreviewProvider {
     static var previews: some View {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
-        let dataManager = ShoppingListDataManager()
-        dataManager.addList("Test List", context: context)
-        let shoppingList = dataManager.fetchList(named: "Test List", context: context)
+        let list = ShoppingList()
+        list.name = "99 Ranch"
+        list.shoppingItems = ["Bok Choy", "Soy Sauce"]
 
-        return ListCell(presentAddItemView: .constant(true), list: shoppingList!)
+        return ListCell(presentAddItemView: .constant(true), list: list)
     }
 }
