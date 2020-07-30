@@ -12,20 +12,22 @@ import MapKit
 
 struct ShoppingListDataManager {
     
-    func addNew(list listName: String, store: Store, context: NSManagedObjectContext) {
+    func addNew(list listName: String, store: Store?, context: NSManagedObjectContext) {
         let newList = ShoppingList(context:context)
         newList.id = UUID()
         newList.name = listName
         newList.lastUpdated = Date()
         
-        let newStore = ShoppingStore(context:context)
-        newStore.id = UUID()
-        newStore.name = store.name
-        newStore.address = store.address
-        newStore.latitude = store.coordinates.latitude
-        newStore.longitude = store.coordinates.longitude
-        
-        newList.store = newStore
+        if let store = store {
+            let newStore = ShoppingStore(context:context)
+            newStore.id = UUID()
+            newStore.name = store.name
+            newStore.address = store.address
+            newStore.latitude = store.coordinates.latitude
+            newStore.longitude = store.coordinates.longitude
+            
+            newList.store = newStore
+        }
         
         do {
             try context.save()

@@ -37,7 +37,6 @@ struct ListCell: View {
 
 struct ListCell_Previews: PreviewProvider {
     static var previews: some View {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         let list = ShoppingList()
         list.name = "99 Ranch"

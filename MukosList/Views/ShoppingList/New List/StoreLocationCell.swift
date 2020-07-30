@@ -15,7 +15,7 @@ struct StoreLocationCell: View {
     
     @Binding var setupState: SetupState
     @Binding var listName: String
-    @Binding var chosenStore: Store
+    @Binding var chosenStore: Store?
     
     var body: some View {
         HStack {

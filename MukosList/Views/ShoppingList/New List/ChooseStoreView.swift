@@ -11,7 +11,7 @@ import SwiftUI
 struct ChooseStoreView: View {
     @Binding var setupState: SetupState
     @Binding var listName: String
-    @Binding var chosenStore: Store
+    @Binding var chosenStore: Store?
     
     @ObservedObject var nearbyStoresFetcher = NearbyStoresFetcher()
     
@@ -37,7 +37,8 @@ struct ChooseStoreView: View {
                 }
             }.padding(.trailing).padding(.leading, 30)
             Button(action: {
-                //do something
+                self.chosenStore = nil
+                self.setupState = .creating
             }) {
                 Text("Don't set a store")
                     .foregroundColor(Color("gray_medium"))

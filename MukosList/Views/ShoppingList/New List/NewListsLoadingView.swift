@@ -12,7 +12,7 @@ struct NewListsLoadingView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @Binding var listName: String
-    @Binding var store: Store
+    @Binding var store: Store?
     
     var body: some View {
         ZStack {

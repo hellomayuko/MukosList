@@ -33,7 +33,7 @@ struct AddListView: View {
         
     @State var setupState: SetupState = .naming
     @State var listName: String = ""
-    @State var store: Store = Store()
+    @State var store: Store? = Store()
     
     var body: some View {
         VStack {
