@@ -28,7 +28,7 @@ struct ListCell: View {
             Button(action: {
                 
             }) {
-                Image("ellipsis").padding(.trailing, 30) //this padding is to make sure the ellipses show since we did a weird thing to hide the ">" symbol that shows because it's a NavigationLink. shrug
+                Image("ellipsis").renderingMode(.template).foregroundColor(Color.black).padding(.trailing, 30) //this padding is to make sure the ellipses show since we did a weird thing to hide the ">" symbol that shows because it's a NavigationLink. shrug
             }
         }
         .frame(height: 60.0)
@@ -37,10 +37,9 @@ struct ListCell: View {
 
 struct ListCell_Previews: PreviewProvider {
     static var previews: some View {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
-        let list = ShoppingList()
-        list.name = "99 Ranch"
-        list.shoppingItems = ["Bok Choy", "Soy Sauce"]
+        let list = SwiftUIPreviewHelper.createList(withContext: context, withItems: false)
 
         return ListCell(presentAddItemView: .constant(true), list: list)
     }

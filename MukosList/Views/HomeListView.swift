@@ -21,12 +21,7 @@ struct HomeListView: View {
     @State var presentAddItemView = false
     @State var navigationBarHidden = true
     let greyColor = Color("gray_medium")
-    
-    init(){
-        UITableView.appearance().backgroundColor = .clear
-        UITableViewCell.appearance().backgroundColor = .clear
-    }
-    
+
     var body: some View {
         VStack {
             ZStack {
@@ -49,7 +44,7 @@ struct HomeListView: View {
                     VStack(alignment: .leading) {
                         Text("Welcome Back")
                             .font(.system(size: 36.0, weight: .bold, design: .default))
-                        Text("Lists updated at 00:00AM").foregroundColor(Color("gray_mediumDark"))
+                        Text("Lists updated at \(shoppingLists.first?.lastUpdated?.timeStampString ?? "some time")").foregroundColor(Color("gray_mediumDark"))
                     }.padding(.leading, 24)
                     Spacer()
                     Circle()

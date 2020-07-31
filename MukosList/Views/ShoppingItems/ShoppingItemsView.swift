@@ -147,18 +147,9 @@ struct ShoppingItemsView: View {
 struct ShoppingItemsView_Previews: PreviewProvider {
     static var previews: some View {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let dataManager = ShoppingListDataManager()
         
-        let storeName = "99 Ranch"
+        let list = SwiftUIPreviewHelper.createList(withContext: context, withItems: true)
         
-        let store = Store()
-        store.name = storeName
-        store.address = "123 ABC St."
-        
-        dataManager.addNew(list: storeName, store: store, context: context)
-        
-        let list = dataManager.fetchList(named: storeName, context: context)
-        
-        return ShoppingItemsView(shoppingList: list!).environment(\.managedObjectContext, context)
+        return ShoppingItemsView(shoppingList: list).environment(\.managedObjectContext, context)
     }
 }
