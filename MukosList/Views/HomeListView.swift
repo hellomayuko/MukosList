@@ -76,7 +76,7 @@ struct HomeListView: View {
                 }) {
                     ListCell(presentAddItemView: self.$presentAddItemView, list: shoppingList).environment(\.managedObjectContext, self.managedObjectContext)
                 }.sheet(isPresented: self.$presentAddItemView) {
-                    ShoppingItemsView(isBeingPresented: self.$presentAddItemView, isPresentedFromAddListView:.constant(false), navigationBarHidden: self.$navigationBarHidden, listName: shoppingList.name ?? "idk").environment(\.managedObjectContext, self.managedObjectContext)
+                    ShoppingItemsView(shoppingList: shoppingList).environment(\.managedObjectContext, self.managedObjectContext)
                     
                 }
             }.padding(.trailing, -40) //this padding is to hide the > symbol

@@ -19,58 +19,112 @@ struct ShoppingItemsView: View {
         ]
     ) var shoppingItems: FetchedResults<ShoppingItem>
     
-    @Binding var isBeingPresented: Bool
-    @Binding var isPresentedFromAddListView: Bool
-    @Binding var navigationBarHidden: Bool
-    @State var listName: String
+    @State var shoppingList: ShoppingList
     @State var itemName: String = ""
+    @State private var toggleBusynessView: Bool = false
     
     var dataManager = ShoppingItemDataManager()
     
     var body: some View {
         VStack {
             HStack {
-                Text(self.lastUpdatedString()).font(.footnote)
-                    .foregroundColor(Color("gray_light")).padding(.leading, 19)
+                Button(action: {
+                    self.presentation.wrappedValue.dismiss()
+                }) {
+                    Image(systemName: "xmark")
+                        .renderingMode(.template)
+                        .foregroundColor(Color.black)
+                        .frame(width: 24, height: 24)
+                }
                 Spacer()
-            }
+                Button(action: {
+                    //do something
+                }) {
+                    Text("Edit")
+                        .foregroundColor(Color("gray_medium"))
+                        .font(.system(size: 22))
+                }
+            }.padding()
+            Group {
+                HStack {
+                    Text(shoppingList.name ?? "").font(.system(size: 32, weight: .bold, design: .default))
+                    Spacer()
+                }
+                HStack {
+                    Text(shoppingList.store?.address ?? "")
+                        .foregroundColor(Color("gray_dark"))
+                        .font(.system(size: 18))
+                    Spacer()
+                }
+                /* V2: Showing popular times using Google's API (which costs $$$)
+                HStack {
+                    Text("• Live \(Date().currentTimeString) :")
+                        .foregroundColor(Color("orange_dark"))
+                        .font(.system(size: 18, weight: .medium, design: .default))
+                    
+                    Button(action: {
+                        //unfold and show stats
+                        self.toggleBusynessView.toggle()
+                    }) {
+                        HStack {
+                            Text(LocationHelper.busyLevel())
+                                .foregroundColor(Color("gray_dark"))
+                                .font(.system(size: 18))
+                            Image(systemName:"chevron.right")
+                                .renderingMode(.template)
+                                .foregroundColor(Color("gray_dark"))
+                        }
+                    }
+                    Spacer()
+                }
+                if self.toggleBusynessView {
+                    Rectangle().foregroundColor(Color.orange).animation(.easeIn)
+                }
+                */
+            }.padding(.leading, 19)
             HStack {
                 Spacer().frame(width:24)
+                                
                 TextField("Enter items", text: $itemName, onEditingChanged: {_ in
                     print("added \(self.itemName)")
                 }, onCommit: {
-                    self.dataManager.addItem(self.itemName, toList: self.listName, quantity: 1, highPriority: false, context: self.managedObjectContext)
+                    guard let listName = self.shoppingList.name else {
+                        return
+                    }
+                    self.dataManager.addItem(self.itemName, toList: listName, quantity: 1, highPriority: false, context: self.managedObjectContext)
                     self.itemName = ""
                 })
-                    .font(.title)
-                    .frame(height: 56.0)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .frame(height: 48.0)
+                    .multilineTextAlignment(.leading)
+                    .foregroundColor(Color("gray_dark"))
+                    .font(.system(size:18, weight:.medium, design:.default))
+                    .background(
+                        RoundedRectangle(cornerRadius: 20)
+                            .foregroundColor(Color("gray_kindaLight"))
+                            .padding(.leading, -15)
+                            .shadow(color: Color("gray_medium"), radius: 1.0, x: 0, y: 3)
+                    )
+                    .padding(.leading, 15)
                 Spacer().frame(width:24)
-            }
+            }.padding(.vertical)
             Spacer()
             HStack(alignment: .top) {
-                /**
-                 V2: Filter Button
-                Button(action: {
-                    //idk yet
-                }) {
-                    Image("filter")
-                }.padding(.leading, 16).padding(.top, 14)
-                */
                 FilteredList(filterKey: "shoppingList.name",
-                             filterValue: self.listName,
+                             filterValue: self.shoppingList.name ?? "default",
                              performDeletion: self.performDelete,
                              sortDescriptors: [
                                 NSSortDescriptor(keyPath: \ShoppingItem.lastUpdated, ascending: false),
                     ])
                 { (shoppingItem: ShoppingItem) in
                     ItemCell(shoppingItem: shoppingItem)
+                        .environment(\.managedObjectContext, self.managedObjectContext)
+                        .padding(.horizontal, 4)
+                        .padding(.vertical, 6)
                 }
             }
-        }.onAppear {
-            self.navigationBarHidden = false
         }
-        .navigationBarTitle(Text(self.listName))
+        .navigationBarTitle(Text(self.shoppingList.name ?? "default"
+        ))
         .navigationBarItems(trailing:
             Button("Edit") {
                 print("Edit tapped!")
@@ -83,15 +137,28 @@ struct ShoppingItemsView: View {
     }
     
     func lastUpdatedString() -> String {
-        if let lastUpdatedDate = self.dataManager.fetchUpdatedAtFor(list: self.listName, context: self.managedObjectContext) {
+        if let lastUpdatedDate = self.dataManager.fetchUpdatedAtFor(list: self.shoppingList.name ?? "default", context: self.managedObjectContext) {
             return "Saved \(lastUpdatedDate.timeStampString)"
         }
         return ""
     }
 }
 
-//struct ShoppingItemsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ShoppingItemsView(managedObjectContext: .constant(true), presentation: .constant(false), shoppingItems: "Trader Joe's", isBeingPresented: "", isPresentedFromAddListView: .constant(false))
-//    }
-//}
+struct ShoppingItemsView_Previews: PreviewProvider {
+    static var previews: some View {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let dataManager = ShoppingListDataManager()
+        
+        let storeName = "99 Ranch"
+        
+        let store = Store()
+        store.name = storeName
+        store.address = "123 ABC St."
+        
+        dataManager.addNew(list: storeName, store: store, context: context)
+        
+        let list = dataManager.fetchList(named: storeName, context: context)
+        
+        return ShoppingItemsView(shoppingList: list!).environment(\.managedObjectContext, context)
+    }
+}

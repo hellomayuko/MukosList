@@ -18,6 +18,23 @@ extension Date {
         }
     }
     
+    var currentTimeString: String {
+        get {
+            let dateFormatter = DateFormatter()
+            
+            let locale = NSLocale.current
+            let timeFormat = DateFormatter.dateFormat(fromTemplate: "j", options: 0, locale: locale)!
+            if timeFormat.contains("a") {
+                //12 hour
+                dateFormatter.dateFormat = "h a"
+            } else{
+                //24 hour
+                dateFormatter.dateFormat = "HH:mm"
+            }
+            return dateFormatter.string(from: self)
+        }
+    }
+    
     var greeting: String {
         let calendar = Calendar.current
         let hourComponent = calendar.dateComponents([.hour], from: self)

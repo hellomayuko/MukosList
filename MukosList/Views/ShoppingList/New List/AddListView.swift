@@ -38,7 +38,7 @@ struct AddListView: View {
     var body: some View {
         VStack {
             if(setupState == .creating) {
-                NewListsLoadingView(listName: self.$listName, store: self.$store)
+                NewListsLoadingView(listName: self.$listName, store: self.$store).environment(\.managedObjectContext, self.managedObjectContext)
             } else {
                 Spacer().frame(height:16)
                 HStack {

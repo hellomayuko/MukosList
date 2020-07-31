@@ -44,6 +44,16 @@ struct ShoppingItemDataManager {
         }
     }
     
+    func toggleItem(item: ShoppingItem, context: NSManagedObjectContext) {
+        item.purchased.toggle()
+        
+        do {
+            try context.save()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     func fetchUpdatedAtFor(list: String, context: NSManagedObjectContext) -> Date? {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "ShoppingList")
         fetchRequest.predicate = NSPredicate(format: "name == %@", list)

@@ -77,4 +77,26 @@ struct ShoppingListDataManager {
             print(error.localizedDescription)
         }
     }
+    
+    func deletePurchasedItems(fromList list: ShoppingList, context: NSManagedObjectContext) {
+//        NSSet *sourceSet =
+//            [NSSet setWithObjects:@"One", @"Two", @"Three", @"Four", nil];
+//        NSPredicate *predicate =
+//            [NSPredicate predicateWithFormat:@"SELF beginswith 'T'"];
+//        NSSet *filteredSet =
+//            [sourceSet filteredSetUsingPredicate:predicate];
+        
+//        let itemsToDelete = list.shoppingItems?.filtered(using: NSPredicate(format: "purchased == true"))
+//        
+//        let itemDataManager = ShoppingItemDataManager()
+//        itemDataManager.deleteItems(itemsToDelete, context: context)
+        
+        let shoppingItems = Array(_immutableCocoaArray: list.shoppingItems!) as [ShoppingItem]
+
+        shoppingItems.forEach { (item) in
+            if(item.purchased) {
+                context.delete(item)
+            }
+        }
+    }
 }

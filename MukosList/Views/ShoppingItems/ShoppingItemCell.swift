@@ -9,18 +9,29 @@
 import SwiftUI
 
 struct ItemCell: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
     @State var shoppingItem: ShoppingItem
+    @State private var isChecked: Bool = false
+    
+    let dataManager = ShoppingItemDataManager()
 
     var body: some View {
         HStack {
-            CheckmarkView(isChecked: shoppingItem.purchased)
+            Button(action: {
+                self.isChecked.toggle()
+                self.dataManager.toggleItem(item: self.shoppingItem, context: self.managedObjectContext)
+            }) {
+                isChecked ? Image("checkmark_true") : Image("checkmark_false")
+
+            }.buttonStyle(PlainButtonStyle())
             VStack(alignment:.leading) {
                 Text(shoppingItem.itemName ?? "idk")
-                    .font(.headline)
-                    .foregroundColor(Color("text_grey"))
+                    .font(.system(size: 22, weight: .medium, design: .default))
+                    .foregroundColor(Color.black)
                 Text("Submitted \(shoppingItem.lastUpdated?.timeStampString ?? "NA")")
-                    .font(.footnote)
-                    .foregroundColor(Color("text_grey"))
+                    .font(.system(size: 16))
+                    .foregroundColor(Color.black)
             }
             Spacer()
 //            Button(action: {
@@ -28,6 +39,17 @@ struct ItemCell: View {
 //            }) {
 //                Image("ellipsis")
 //            }
-        }.frame(height: 50.0)
+        }.frame(height: 50.0).onDisappear {
+            
+        }
+    }
+}
+
+struct ShoppingItemCell_Previews: PreviewProvider {
+    static var previews: some View {
+        let shoppingItem = ShoppingItem()
+        shoppingItem.itemName = "Tofu"
+        shoppingItem.lastUpdated = Date()
+        return ItemCell(shoppingItem: shoppingItem)
     }
 }

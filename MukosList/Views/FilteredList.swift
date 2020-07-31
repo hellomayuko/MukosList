@@ -20,10 +20,19 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
     let content: (T) -> Content
 
     var body: some View {
-        List {
-            ForEach(self.results, id: \.self) { result in
-                self.content(result)
-            }.onDelete(perform: self.deleteObjects(_:))
+        Group {
+            if(self.results.count == 0) {
+                VStack {
+                    Text("No items").foregroundColor(Color("gray_medium")).padding()
+                    Spacer()
+                }
+            } else {
+                List {
+                    ForEach(self.results, id: \.self) { result in
+                        self.content(result)
+                    }.onDelete(perform: self.deleteObjects(_:))
+                }
+            }
         }
     }
 
@@ -48,5 +57,11 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
             objectSet.insert(result)
         }
         return objectSet
+    }
+}
+
+struct FilteredList_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
     }
 }
