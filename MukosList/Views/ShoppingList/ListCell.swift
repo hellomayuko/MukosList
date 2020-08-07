@@ -9,9 +9,14 @@
 import SwiftUI
 
 struct ListCell: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
     @Binding var presentAddItemView: Bool
+    
+    @State private var showingSheet = false
+    
     var list: ShoppingList
-    @State var notShowingNewListFlow = false
+    let dataManager = ShoppingListDataManager()
     
     var body: some View {
         HStack {
@@ -26,9 +31,16 @@ struct ListCell: View {
             .padding(.leading, 15.0)
             Spacer()
             Button(action: {
-                
+                self.showingSheet = true
             }) {
-                Image("ellipsis").renderingMode(.template).foregroundColor(Color.black).padding(.trailing, 30) //this padding is to make sure the ellipses show since we did a weird thing to hide the ">" symbol that shows because it's a NavigationLink. shrug
+                Image("ellipsis").renderingMode(.template).foregroundColor(Color.black)
+            }.actionSheet(isPresented: $showingSheet) {
+                ActionSheet(title: Text("What do you want to do?"), message:nil, buttons: [
+                    .default(Text("Edit")) { print("edit") },
+                    .destructive(Text("Delete")) { self.dataManager.deleteList(self.list, context: self.managedObjectContext)
+                    },
+                    .cancel(Text("Cancel")) { self.showingSheet = false },
+                ])
             }
         }
         .frame(height: 60.0)
