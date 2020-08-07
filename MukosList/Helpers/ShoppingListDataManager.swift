@@ -99,4 +99,22 @@ struct ShoppingListDataManager {
             }
         }
     }
+    
+    func deleteList(_ list:ShoppingList, context: NSManagedObjectContext) {
+        
+        //delete items associated to that list to avoid orphaned items
+        list.shoppingItems?.forEach({ item in
+            if let item = item as? ShoppingItem {
+                context.delete(item)
+            }
+        })
+        context.delete(list)
+        
+        do {
+            try context.save()
+        } catch {
+            // handle the Core Data error
+            print("there was an error)")
+        }
+    }
 }

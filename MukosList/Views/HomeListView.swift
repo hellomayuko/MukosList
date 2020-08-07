@@ -21,6 +21,7 @@ struct HomeListView: View {
     @State var presentAddItemView = false
     @State var navigationBarHidden = true
     let greyColor = Color("gray_medium")
+    let dataManager = ShoppingListDataManager()
 
     var body: some View {
         VStack {
@@ -65,21 +66,33 @@ struct HomeListView: View {
             }.padding(.horizontal, 24).padding(.top, 34).padding(.bottom, 24)
             CreateListButton().environment(\.managedObjectContext, self.managedObjectContext).padding(.horizontal, 16)
             Spacer()
-            List(shoppingLists, id: \.self) { shoppingList in
-                Button(action: {
-                    self.presentAddItemView.toggle()
-                }) {
-                    ListCell(presentAddItemView: self.$presentAddItemView, list: shoppingList).environment(\.managedObjectContext, self.managedObjectContext)
-                }.sheet(isPresented: self.$presentAddItemView) {
-                    ShoppingItemsView(shoppingList: shoppingList).environment(\.managedObjectContext, self.managedObjectContext)
-                    
+            
+            List {
+                ForEach(shoppingLists, id: \.self) { shoppingList in
+                    Button(action: {
+                        self.presentAddItemView.toggle()
+                    }) {
+                        ListCell(presentAddItemView: self.$presentAddItemView, list: shoppingList).environment(\.managedObjectContext, self.managedObjectContext)
+                    }.sheet(isPresented: self.$presentAddItemView) {
+                        ShoppingItemsView(shoppingList: shoppingList).environment(\.managedObjectContext, self.managedObjectContext)
+                        
+                    }
                 }
-            }.padding(.trailing, -40) //this padding is to hide the > symbol
+                .onDelete(perform: deleteList(at:))
+            }
+
         }.onAppear {
             self.navigationBarHidden = true
         }
         .background(Color("gray_veryLight"))
         .edgesIgnoringSafeArea(.top)
+    }
+    
+    func deleteList(at offsets: IndexSet) {
+        for index in offsets {
+            let shoppingList = self.shoppingLists[index]
+            self.dataManager.deleteList(shoppingList, context: self.managedObjectContext)
+        }
     }
 }
 
