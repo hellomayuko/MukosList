@@ -24,6 +24,7 @@
 		2C757AD724D4CF16007E8C06 /* SwiftUIPreviewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C757AD624D4CF16007E8C06 /* SwiftUIPreviewHelper.swift */; };
 		2C7CF44E24D1429E009871F6 /* NewListsLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7CF44D24D1429E009871F6 /* NewListsLoadingView.swift */; };
 		2C7D9D7C24CBA17F0096BDD1 /* NearbyStoresFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7D9D7A24CB95DA0096BDD1 /* NearbyStoresFetcher.swift */; };
+		2C86900824DDFBEB009231E2 /* ShoppingList+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C86900724DDFBEB009231E2 /* ShoppingList+Extensions.swift */; };
 		2C893E5F2471E9E90013DEE5 /* ShoppingItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C893E5E2471E9E90013DEE5 /* ShoppingItem+Extensions.swift */; };
 		2C893E612471EB140013DEE5 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C893E602471EB140013DEE5 /* Date+Extensions.swift */; };
 		2C893E632471EF790013DEE5 /* ShoppingItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C893E622471EF790013DEE5 /* ShoppingItemCell.swift */; };
@@ -80,6 +81,7 @@
 		2C757AD624D4CF16007E8C06 /* SwiftUIPreviewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIPreviewHelper.swift; sourceTree = "<group>"; };
 		2C7CF44D24D1429E009871F6 /* NewListsLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListsLoadingView.swift; sourceTree = "<group>"; };
 		2C7D9D7A24CB95DA0096BDD1 /* NearbyStoresFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyStoresFetcher.swift; sourceTree = "<group>"; };
+		2C86900724DDFBEB009231E2 /* ShoppingList+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShoppingList+Extensions.swift"; sourceTree = "<group>"; };
 		2C893E5E2471E9E90013DEE5 /* ShoppingItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShoppingItem+Extensions.swift"; sourceTree = "<group>"; };
 		2C893E602471EB140013DEE5 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		2C893E622471EF790013DEE5 /* ShoppingItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItemCell.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			children = (
 				2CACDF1D245F848F00B66935 /* ShoppingLocation.swift */,
 				2C893E5E2471E9E90013DEE5 /* ShoppingItem+Extensions.swift */,
+				2C86900724DDFBEB009231E2 /* ShoppingList+Extensions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				2C5D25DF245F603500BF1907 /* SceneDelegate.swift in Sources */,
 				2C893E6E2471F5420013DEE5 /* ShoppingListDataManager.swift in Sources */,
 				2C893E652471F1480013DEE5 /* CreateListButton.swift in Sources */,
+				2C86900824DDFBEB009231E2 /* ShoppingList+Extensions.swift in Sources */,
 				2C367609249D873C002E3847 /* CheckmarkView.swift in Sources */,
 				2C893E6C2471F4850013DEE5 /* ShoppingItemDataManager.swift in Sources */,
 				2CF6D3132468A02A00206F68 /* AddListView.swift in Sources */,

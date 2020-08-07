@@ -45,6 +45,16 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
 
     }
     
+    init(predicates: [NSPredicate], performDeletion: @escaping (Set<T>) -> (), sortDescriptors:[NSSortDescriptor], @ViewBuilder content: @escaping (T) -> Content) {
+        self.content = content
+        self.performDeletion = performDeletion
+        self.sortDescriptors = sortDescriptors
+        
+        let compoundPred = NSCompoundPredicate.init(type: .and, subpredicates: predicates)
+
+        fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors:self.sortDescriptors, predicate: compoundPred)
+    }
+    
     func deleteObjects(_ offsets: IndexSet) {
         self.performDeletion(objectsToDelete(at: offsets))
     }

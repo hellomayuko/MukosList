@@ -20,7 +20,7 @@ struct ListCell: View {
                 Text(list.name ?? "N/A")
                     .font(.headline)
                 
-                Text("\(list.shoppingItems!.count) items")
+                Text("\(list.numUnpurchasedItems()) items")
                     .font(.subheadline)
             }
             .padding(.leading, 15.0)

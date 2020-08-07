@@ -109,8 +109,10 @@ struct ShoppingItemsView: View {
             }.padding(.vertical)
             Spacer()
             HStack(alignment: .top) {
-                FilteredList(filterKey: "shoppingList.name",
-                             filterValue: self.shoppingList.name ?? "default",
+                FilteredList(predicates: [
+                                NSPredicate(format: "%K == %@", "shoppingList.name", self.shoppingList.name ?? "default"),
+                                NSPredicate(format: "%K == %@", "purchased", false)
+                            ],
                              performDeletion: self.performDelete,
                              sortDescriptors: [
                                 NSSortDescriptor(keyPath: \ShoppingItem.lastUpdated, ascending: false),
@@ -122,7 +124,7 @@ struct ShoppingItemsView: View {
                         .padding(.vertical, 6)
                 }
             }
-        }
+        }.background(Color("gray_veryLight"))
         .navigationBarTitle(Text(self.shoppingList.name ?? "default"
         ))
         .navigationBarItems(trailing:
