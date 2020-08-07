@@ -16,9 +16,12 @@ struct StoreLocationCell: View {
     @Binding var setupState: SetupState
     @Binding var listName: String
     @Binding var chosenStore: Store?
-    
+        
     var body: some View {
         HStack {
+            if self.chosenStore == self.store {
+                Image("checkmark_true")
+            }
             Group {
                 VStack(alignment:.leading) {
                     Text(store.name).font(.system(size:22, weight:.medium, design:.default))
@@ -31,7 +34,6 @@ struct StoreLocationCell: View {
                 Spacer()
             }.onTapGesture {
                 self.chosenStore = self.store
-                self.setupState = .creating
             }
             Button(action: {
                 self.openMaps()

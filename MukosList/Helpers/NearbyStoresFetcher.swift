@@ -10,12 +10,16 @@ import Foundation
 import MapKit
 import Combine
 
-class Store: Identifiable, ObservableObject {
+class Store: Identifiable, ObservableObject, Equatable {
     var id = UUID()
     var name: String = ""
     var address: String = ""
     var coordinates: CLLocationCoordinate2D = CLLocationCoordinate2D()
     @Published var distanceFromZip: String = ""
+    
+    static func ==(lhs: Store, rhs: Store) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 class NearbyStoresFetcher: NSObject, ObservableObject {

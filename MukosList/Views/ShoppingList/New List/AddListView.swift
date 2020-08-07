@@ -64,6 +64,16 @@ struct AddListView: View {
                     Text(self.setupState.title)
                         .font(.system(size:24, weight:.semibold, design:.default))
                         .foregroundColor(Color("gray_dark"))
+                    if(self.setupState == .location) {
+                        HStack {
+                            Spacer()
+                            Button(action: {
+                                self.setupState = .creating
+                            }) {
+                                Text("Create").foregroundColor(Color("orange")).font(.system(size:18, weight:.semibold, design:.default))
+                            }.padding(.trailing, 28)
+                        }
+                    }
                 }.padding(.vertical)
                 if(setupState == .naming) {
                     NameListView(setupState: self.$setupState,
