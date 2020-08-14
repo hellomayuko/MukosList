@@ -84,16 +84,13 @@ struct ShoppingItemsView: View {
             }.padding(.leading, 19)
             HStack {
                 Spacer().frame(width:24)
-                                
-                TextField("Enter items", text: $itemName, onEditingChanged: {_ in
-                    print("added \(self.itemName)")
-                }, onCommit: {
+                TextFieldView(placeholder: "Enter items", text: $itemName) {
                     guard let listName = self.shoppingList.name else {
                         return
                     }
                     self.dataManager.addItem(self.itemName, toList: listName, quantity: 1, highPriority: false, context: self.managedObjectContext)
                     self.itemName = ""
-                })
+                }
                     .frame(height: 48.0)
                     .multilineTextAlignment(.leading)
                     .foregroundColor(Color("gray_dark"))
