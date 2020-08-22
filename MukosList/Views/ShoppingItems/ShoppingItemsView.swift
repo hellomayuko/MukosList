@@ -128,7 +128,21 @@ struct ShoppingItemsView: View {
             Button("Edit") {
                 print("Edit tapped!")
             }.foregroundColor(Color("gray_medium"))
-        )
+        ).onDisappear {
+            let scheduledItems = self.shoppingItems.filter { (item) -> Bool in
+                let value = item.willBePurchased && !item.purchased
+                return value
+            }
+            //This is a jank way to go around my crash. I'm guessing that because I'm updating things in CoreData
+            //right as this view dismisses, the List tries to render the new update as a result of this call but
+            //because it's getting dealloc'd and removed from the view, it gets in a weird state and crashes.
+            //The only thing that the crash stack shows is this call: PlaceholderInfo.reuseItem(info:placeholder:context:) ()
+            //This sounds kinda Apple/reusing cells in a list-related. But like, i have no idea how to debug that. so. here we are.
+            //So who actually knows what could be going on tho, the stack trace for this is tiny and doesn't help at all. /shrug
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.dataManager.purchasedScheduledItems(scheduledItems, context: self.managedObjectContext)
+            }
+        }
     }
     
     func performDelete(_ objects: Set<ShoppingItem>) {

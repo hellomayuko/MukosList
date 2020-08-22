@@ -20,6 +20,9 @@ struct ItemCell: View {
         HStack {
             Button(action: {
                 self.isChecked.toggle()
+                if(self.isChecked) {
+                    self.dataManager.scheduleForPurchase(item: self.shoppingItem, context: self.managedObjectContext)
+                }
             }) {
                 isChecked ? Image("checkmark_true") : Image("checkmark_false")
             }.buttonStyle(PlainButtonStyle())
@@ -37,10 +40,8 @@ struct ItemCell: View {
 //            }) {
 //                Image("ellipsis")
 //            }
-        }.frame(height: 50.0).onDisappear {
-            if(self.isChecked) {
-                self.dataManager.toggleItem(item: self.shoppingItem, context: self.managedObjectContext)
-            }
+        }.frame(height: 50.0).onAppear {
+            self.isChecked = self.shoppingItem.willBePurchased
         }
     }
 }

@@ -9,6 +9,16 @@
 import Foundation
 
 extension ShoppingList: Identifiable {
+    
+    func numItemsNotPurchased() -> Int {
+        let scheduledItems = self.shoppingItems?.filter { (item) -> Bool in
+            let itemCasted = item as? ShoppingItem
+            let value = !(itemCasted?.willBePurchased ?? false) && !(itemCasted?.purchased ?? false)
+            return value
+        }
+        
+        return scheduledItems?.count ?? 0
+    }
 
     func numUnpurchasedItems() -> Int {
         let count = self.shoppingItems?.filter({

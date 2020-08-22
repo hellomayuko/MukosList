@@ -75,7 +75,6 @@ struct HomeListView: View {
                         ListCell(presentAddItemView: self.$presentAddItemView, list: shoppingList).environment(\.managedObjectContext, self.managedObjectContext)
                     }.sheet(isPresented: self.$presentAddItemView) {
                         ShoppingItemsView(shoppingList: shoppingList).environment(\.managedObjectContext, self.managedObjectContext)
-                        
                     }
                 }
                 .onDelete(perform: deleteList(at:))

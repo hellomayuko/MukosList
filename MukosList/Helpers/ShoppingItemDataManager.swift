@@ -43,10 +43,33 @@ struct ShoppingItemDataManager {
             context.delete(shoppingItem)
         }
     }
-    
-    func toggleItem(item: ShoppingItem, context: NSManagedObjectContext) {
-        item.purchased.toggle()
+
+    func scheduleForPurchase(item: ShoppingItem, context: NSManagedObjectContext) {
+        /**
+          This function schedules an item to be purchased, called from the cell class.
+          When the itemView is dismissed, we'll go through and properly mark these as purchased.
+          They need to be separate properties because:
         
+            1. We don't want the items to disappear on the itemView as soon as they're checked.
+            2. We only want to mark items in the itemView as purchased once the itemView is dismissed
+            3. Because the itemView doesn't know the state of each cell's "checked"ness, and instead will
+               refer to the item state. or something like that.
+         */
+        item.willBePurchased.toggle()
+        
+        do {
+            try context.save()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func purchasedScheduledItems(_ scheduledItems: [ShoppingItem], context: NSManagedObjectContext) {
+        for item in scheduledItems {
+            item.purchased.toggle()
+        }
+        print("SCHEDULEDITEMS")
+        print(scheduledItems)
         do {
             try context.save()
         } catch {

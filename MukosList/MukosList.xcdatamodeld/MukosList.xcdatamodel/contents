@@ -7,6 +7,7 @@
         <attribute name="lastUpdated" attributeType="Date" defaultDateTimeInterval="599558400" usesScalarValueType="NO"/>
         <attribute name="purchased" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="quantity" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="willBePurchased" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="shoppingList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ShoppingList" inverseName="shoppingItems" inverseEntity="ShoppingList"/>
     </entity>
     <entity name="ShoppingList" representedClassName="ShoppingList" syncable="YES" codeGenerationType="class">
@@ -25,7 +26,7 @@
         <relationship name="list" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ShoppingList" inverseName="store" inverseEntity="ShoppingList"/>
     </entity>
     <elements>
-        <element name="ShoppingItem" positionX="200.9140625" positionY="-63.10546875" width="128" height="148"/>
+        <element name="ShoppingItem" positionX="200.9140625" positionY="-63.10546875" width="128" height="163"/>
         <element name="ShoppingList" positionX="-63" positionY="-18" width="128" height="118"/>
         <element name="ShoppingStore" positionX="72" positionY="0" width="128" height="133"/>
     </elements>
