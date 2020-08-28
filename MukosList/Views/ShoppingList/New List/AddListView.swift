@@ -35,6 +35,11 @@ struct AddListView: View {
     @State var listName: String = ""
     @State var store: Store? = Store()
     
+    init(_ listName: String?, store: Store?) {
+        self.listName = listName ?? ""
+        self.store = store
+    }
+    
     var body: some View {
         VStack {
             if(setupState == .creating) {
@@ -101,6 +106,6 @@ struct AddListView: View {
 
 struct AddListView_Previews: PreviewProvider {
     static var previews: some View {
-        AddListView()
+        AddListView(nil, store: nil)
     }
 }

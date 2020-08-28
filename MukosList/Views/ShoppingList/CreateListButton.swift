@@ -31,7 +31,7 @@ struct CreateListButton: View {
         .cornerRadius(20)
         .shadow(radius: 3)
         .sheet(isPresented: self.$showAddListView) {
-            AddListView().environment(\.managedObjectContext, self.managedObjectContext)
+            AddListView(nil, store: nil).environment(\.managedObjectContext, self.managedObjectContext)
         }
     }
 }

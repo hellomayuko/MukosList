@@ -69,13 +69,7 @@ struct HomeListView: View {
             
             List {
                 ForEach(shoppingLists, id: \.self) { shoppingList in
-                    Button(action: {
-                        self.presentAddItemView.toggle()
-                    }) {
-                        ListCell(presentAddItemView: self.$presentAddItemView, list: shoppingList).environment(\.managedObjectContext, self.managedObjectContext)
-                    }.sheet(isPresented: self.$presentAddItemView) {
-                        ShoppingItemsView(shoppingList: shoppingList).environment(\.managedObjectContext, self.managedObjectContext)
-                    }
+                    ListCell(presentAddItemView: self.$presentAddItemView, list: shoppingList).environment(\.managedObjectContext, self.managedObjectContext)
                 }
                 .onDelete(perform: deleteList(at:))
             }
