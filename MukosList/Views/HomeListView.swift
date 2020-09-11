@@ -45,7 +45,11 @@ struct HomeListView: View {
                     VStack(alignment: .leading) {
                         Text("Welcome Back")
                             .font(.system(size: 36.0, weight: .bold, design: .default))
-                        Text("Lists updated at \(shoppingLists.first?.lastUpdated?.timeStampString ?? "some time")").foregroundColor(Color("gray_mediumDark"))
+                        Group {
+                            if(shoppingLists.count > 0) {
+                                Text("Lists updated at \(shoppingLists.first?.lastUpdated?.timeStampString ?? "some time")").foregroundColor(Color("gray_mediumDark"))
+                            }
+                        }
                     }.padding(.leading, 24)
                     Spacer()
                     Circle()
