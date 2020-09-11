@@ -21,8 +21,8 @@ struct CreateListButton: View {
                 Image("add_gray").padding(.leading, 14)
                 Text("Create New List")
                     .font(.headline)
-                    .padding(.trailing, 160.0)
-                    .padding(.leading, 15.0)
+                    .padding(.trailing, 16.0)
+                    .padding(.leading, 16.0)
                     .foregroundColor(Color("gray_mediumDark"))
                 Spacer()
             }
