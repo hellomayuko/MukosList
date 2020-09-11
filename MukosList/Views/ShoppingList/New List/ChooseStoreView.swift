@@ -38,7 +38,11 @@ struct ChooseStoreView: View {
             }.padding(.trailing).padding(.leading, 30)
             Button(action: {
                 self.chosenStore = nil
-                self.setupState = .creating
+                if(self.setupState == .location) {
+                    self.setupState = .creating
+                } else if(self.setupState == .relocating) {
+                    self.setupState = .editing
+                }
             }) {
                 Text("Don't set a store")
                     .foregroundColor(Color("gray_medium"))

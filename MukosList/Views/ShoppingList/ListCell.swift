@@ -15,16 +15,18 @@ private enum SheetToShow {
 
 struct ListCell: View {
     @Environment(\.managedObjectContext) var managedObjectContext
-    
+
     @Binding var presentAddItemView: Bool
-    
+
     @State private var presentSheet = false
     @State private var sheetToPresent: SheetToShow = .shoppingList
     @State private var presentActionSheet = false
-    
+
+    @State var setupState: SetupState = .renaming
+
     var list: ShoppingList
     let dataManager = ShoppingListDataManager()
-    
+
     var body: some View {
         HStack {
             HStack {
@@ -32,7 +34,7 @@ struct ListCell: View {
                 VStack(alignment:.leading){
                     Text(list.name ?? "N/A")
                         .font(.headline)
-                    
+
                     Text("\(list.numItemsNotPurchased()) items")
                         .font(.subheadline)
                 }
@@ -54,7 +56,7 @@ struct ListCell: View {
             if(self.sheetToPresent == .shoppingList) {
                 ShoppingItemsView(shoppingList: self.list).environment(\.managedObjectContext, self.managedObjectContext)
             } else {
-                AddListView(self.list.name, store: self.list.store?.getStore()).environment(\.managedObjectContext, self.managedObjectContext)
+                AddListView(setupState: self.$setupState, listName: self.list.name, store: self.list.store?.getStore(), uid: self.list.id).environment(\.managedObjectContext, self.managedObjectContext)
             }
         }
         .frame(height: 60.0)
@@ -77,7 +79,7 @@ struct ListCell: View {
 struct ListCell_Previews: PreviewProvider {
     static var previews: some View {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
+
         let list = SwiftUIPreviewHelper.createList(withContext: context, withItems: false)
 
         return ListCell(presentAddItemView: .constant(true), list: list)

@@ -11,10 +11,12 @@ import SwiftUI
 struct NewListsLoadingView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.presentationMode) var presentation
-    
+
+    @Binding var setupState: SetupState
     @Binding var listName: String
     @Binding var store: Store?
-    
+    var uid: UUID?
+
     var body: some View {
         ZStack {
             Rectangle()
@@ -24,19 +26,20 @@ struct NewListsLoadingView: View {
                 .edgesIgnoringSafeArea(.all)
             HStack {
                 ActivityIndicator(isAnimating: .constant(true), style: .large)
-                Text("Creating List...")
+                Text(self.setupState == .creating ? "Creating List..." : "Editing List...")
                    .font(.system(size:24, weight:.bold, design:.default))
                    .foregroundColor(Color("gray_dark"))
                    .animation(.easeInOut)
             }
-            
+
         }.onAppear {
-            self.startTimer()
             let dataManager = ShoppingListDataManager()
-            dataManager.addNew(list: self.listName, store: self.store, context: self.managedObjectContext)
+            dataManager.addOrUpdateNew(list: self.uid, listName: self.listName, store: self.store, context: self.managedObjectContext)
+
+            self.startTimer()
         }
     }
-    
+
     func startTimer() {
         let _ = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
             self.presentation.wrappedValue.dismiss()
@@ -46,7 +49,7 @@ struct NewListsLoadingView: View {
 
 struct NewListsLoadingView_Previews: PreviewProvider {
     static var previews: some View {
-        NewListsLoadingView(listName: .constant("HMart"), store: .constant(Store()))
+        NewListsLoadingView(setupState: .constant(.creating), listName: .constant("HMart"), store: .constant(Store()), uid: nil)
     }
 }
 

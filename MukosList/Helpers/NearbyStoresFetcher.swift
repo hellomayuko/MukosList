@@ -20,6 +20,12 @@ class Store: Identifiable, ObservableObject, Equatable {
     static func ==(lhs: Store, rhs: Store) -> Bool {
         return lhs.id == rhs.id
     }
+    
+    func isEqual(store: ShoppingStore) -> Bool {
+        return self.name == store.name &&
+            self.coordinates.latitude == store.latitude &&
+            self.coordinates.longitude == store.longitude
+    }
 }
 
 class NearbyStoresFetcher: NSObject, ObservableObject {

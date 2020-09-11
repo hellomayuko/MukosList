@@ -9,7 +9,7 @@
 import SwiftUI
 
 enum NameListAction {
-    case skip, create
+    case skip, create, edit
 }
 
 struct NameListView: View {
@@ -22,6 +22,17 @@ struct NameListView: View {
     
     var dataManager = ShoppingListDataManager()
     
+    init(setupState: Binding<SetupState>, listName: Binding<String>) {
+        _setupState = setupState
+        _listName = listName
+    
+        if(listName.wrappedValue != "") {
+            _actionButtonState = .init(wrappedValue: .edit)
+            print("woah")
+        }
+        print(listName)
+    }
+    
     var body: some View {
         VStack {
             Spacer()
@@ -30,7 +41,9 @@ struct NameListView: View {
                 .foregroundColor(Color("gray_dark"))
                 .padding(.bottom, 12.0)
             TextField("", text: $listName, onEditingChanged: {_ in
-                self.actionButtonState = .create
+                if(self.actionButtonState == .skip) {
+                    self.actionButtonState = .create
+                }
             }, onCommit: {
 //                Call update instead of add just in case we already
 //                have a list of the same name
@@ -47,12 +60,27 @@ struct NameListView: View {
                 .foregroundColor(Color("gray_dark"))
             Button(action: {
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
-                self.setupState = .location
+                if(self.setupState == .naming) {
+                    self.setupState = .location
+                } else if(self.setupState == .renaming) {
+                    self.setupState = .relocating
+                }
             }) {
                 if(self.actionButtonState == .skip) {
                     Text("No Thanks")
                         .foregroundColor(Color("gray_medium"))
                         .font(.system(size:18, weight:.bold, design:.default))
+                } else if(self.actionButtonState == .edit) {
+                    Text("Edit")
+                        .foregroundColor(Color("orange"))
+                        .font(.system(size:18, weight:.bold, design:.default))
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .frame(width: 118)
+                                .frame(height:40)
+                                .foregroundColor(Color.white)
+                                .shadow(color: .gray, radius: 1, x: 0, y: 0)
+                        )
                 } else {
                     Text("Create")
                         .foregroundColor(Color("orange"))

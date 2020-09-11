@@ -11,7 +11,8 @@ import SwiftUI
 struct CreateListButton: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @State var showAddListView: Bool = false
-    
+    @State var setupState: SetupState = .naming
+
     var body: some View {
         Button(action: {
             self.showAddListView.toggle()
@@ -31,7 +32,7 @@ struct CreateListButton: View {
         .cornerRadius(20)
         .shadow(radius: 3)
         .sheet(isPresented: self.$showAddListView) {
-            AddListView(nil, store: nil).environment(\.managedObjectContext, self.managedObjectContext)
+            AddListView(setupState: self.$setupState, listName: nil, store: nil, uid: nil).environment(\.managedObjectContext, self.managedObjectContext)
         }
     }
 }

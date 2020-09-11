@@ -9,15 +9,21 @@
 import SwiftUI
 
 enum SetupState {
-    case naming, location, creating
+    case naming, renaming
+    case location, relocating
+    case creating, editing
 //V2    case sharing
-    
+
     var title: String {
         switch(self) {
         case .naming:
             return "Make a New List"
+        case .renaming:
+            return "Edit Your List"
         case .location:
             return "Set Your Store"
+        case .relocating:
+            return "Edit Your Location"
 //        case .sharing:
 //            return "Share Your List"
         default:
@@ -27,23 +33,29 @@ enum SetupState {
 }
 
 struct AddListView: View {
-    
+
     @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.presentationMode) var presentation
-        
-    @State var setupState: SetupState = .naming
+
+    @Binding var setupState: SetupState
+
     @State var listName: String = ""
     @State var store: Store? = Store()
-    
-    init(_ listName: String?, store: Store?) {
-        self.listName = listName ?? ""
+
+    var uid: UUID?
+
+    init(setupState: Binding<SetupState>, listName: String?, store: Store?, uid: UUID?) {
+        _setupState = setupState
+        _listName = State(initialValue: listName ?? "")
         self.store = store
+
+        self.uid = uid
     }
-    
+
     var body: some View {
         VStack {
-            if(setupState == .creating) {
-                NewListsLoadingView(listName: self.$listName, store: self.$store).environment(\.managedObjectContext, self.managedObjectContext)
+            if(setupState == .creating || self.setupState == .editing) {
+                NewListsLoadingView(setupState: self.$setupState, listName: self.$listName, store: self.$store, uid: self.uid).environment(\.managedObjectContext, self.managedObjectContext)
             } else {
                 Spacer().frame(height:16)
                 HStack {
@@ -54,10 +66,12 @@ struct AddListView: View {
                 ZStack {
                     HStack {
                         Button(action: {
-                            if(self.setupState == .naming) {
+                            if(self.setupState == .naming || self.setupState == .renaming) {
                                 self.presentation.wrappedValue.dismiss()
                             } else if(self.setupState == .location) {
                                 self.setupState = .naming
+                            } else if(self.setupState == .relocating) {
+                                self.setupState = .renaming
                             } else {
                                 self.setupState = .location
                             }
@@ -69,21 +83,25 @@ struct AddListView: View {
                     Text(self.setupState.title)
                         .font(.system(size:24, weight:.semibold, design:.default))
                         .foregroundColor(Color("gray_dark"))
-                    if(self.setupState == .location) {
+                    if(self.setupState == .location || self.setupState == .relocating) {
                         HStack {
                             Spacer()
                             Button(action: {
-                                self.setupState = .creating
+                                if(self.setupState == .location) {
+                                    self.setupState = .creating
+                                } else {
+                                    self.setupState = .editing
+                                }
                             }) {
-                                Text("Create").foregroundColor(Color("orange")).font(.system(size:18, weight:.semibold, design:.default))
+                                Text(self.setupState == .location ? "Create":"Edit").foregroundColor(Color("orange")).font(.system(size:18, weight:.semibold, design:.default))
                             }.padding(.trailing, 28)
                         }
                     }
                 }.padding(.vertical)
-                if(setupState == .naming) {
+                if(setupState == .naming || self.setupState == .renaming) {
                     NameListView(setupState: self.$setupState,
                                  listName: self.$listName)
-                } else if(setupState == .location) {
+                } else if(setupState == .location || self.setupState == .relocating) {
                     ChooseStoreView(setupState: self.$setupState,
                                     listName: self.$listName, chosenStore: self.$store)
                         .environment(\.managedObjectContext, self.managedObjectContext)
@@ -93,7 +111,7 @@ struct AddListView: View {
             }
         }
     }
-    
+
     func colorFor(setupState: SetupState) -> Color {
         if(setupState == self.setupState) {
             return Color("orange")
@@ -106,6 +124,6 @@ struct AddListView: View {
 
 struct AddListView_Previews: PreviewProvider {
     static var previews: some View {
-        AddListView(nil, store: nil)
+        AddListView(setupState: .constant(.naming), listName: nil, store: nil, uid: nil)
     }
 }
