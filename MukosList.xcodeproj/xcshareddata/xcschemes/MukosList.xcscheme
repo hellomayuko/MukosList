@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2C5D25D8245F603500BF1907"
-               BuildableName = "MukosList.app"
+               BuildableName = "Kaimemo.app"
                BlueprintName = "MukosList"
                ReferencedContainer = "container:MukosList.xcodeproj">
             </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2C5D25D8245F603500BF1907"
-            BuildableName = "MukosList.app"
+            BuildableName = "Kaimemo.app"
             BlueprintName = "MukosList"
             ReferencedContainer = "container:MukosList.xcodeproj">
          </BuildableReference>
@@ -88,7 +88,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2C5D25D8245F603500BF1907"
-            BuildableName = "MukosList.app"
+            BuildableName = "Kaimemo.app"
             BlueprintName = "MukosList"
             ReferencedContainer = "container:MukosList.xcodeproj">
          </BuildableReference>

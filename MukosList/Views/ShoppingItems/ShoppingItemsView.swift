@@ -22,6 +22,8 @@ struct ShoppingItemsView: View {
     @State var shoppingList: ShoppingList
     @State var itemName: String = ""
     @State private var toggleBusynessView: Bool = false
+    @State private var setupState: SetupState = .renaming //if the user goes into edit flow
+    @State private var presentEditSheet = false
     
     var dataManager = ShoppingItemDataManager()
     
@@ -39,6 +41,7 @@ struct ShoppingItemsView: View {
                 Spacer()
                 Button(action: {
                     //do something
+                    self.presentEditSheet = true
                 }) {
                     Text("Edit")
                         .foregroundColor(Color("gray_medium"))
@@ -126,7 +129,7 @@ struct ShoppingItemsView: View {
         ))
         .navigationBarItems(trailing:
             Button("Edit") {
-                print("Edit tapped!")
+                print("hello")
             }.foregroundColor(Color("gray_medium"))
         ).onDisappear {
             let scheduledItems = self.shoppingItems.filter { (item) -> Bool in
@@ -142,6 +145,11 @@ struct ShoppingItemsView: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.dataManager.purchasedScheduledItems(scheduledItems, context: self.managedObjectContext)
             }
+        }.sheet(isPresented: self.$presentEditSheet) {
+            AddListView(setupState: self.$setupState, listName: self.shoppingList.name, store: self.shoppingList.store?.getStore(), uid: self.shoppingList.id).environment(\.managedObjectContext, self.managedObjectContext)
+                .onDisappear {
+                    self.setupState = .renaming
+                }
         }
     }
     
