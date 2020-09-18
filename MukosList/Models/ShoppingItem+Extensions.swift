@@ -8,5 +8,5 @@
 
 import Foundation
 
-extension ShoppingItem: Identifiable {
+extension ShoppingItem {
 }

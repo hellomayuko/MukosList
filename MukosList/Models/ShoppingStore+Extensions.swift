@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-extension ShoppingStore: Identifiable {
+extension ShoppingStore {
     
     func getStore() -> Store {
         let store = Store()

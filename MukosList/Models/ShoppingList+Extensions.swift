@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension ShoppingList: Identifiable {
+extension ShoppingList {
     
     func numItemsNotPurchased() -> Int {
         let scheduledItems = self.shoppingItems?.filter { (item) -> Bool in

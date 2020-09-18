@@ -24,7 +24,7 @@ struct ContentView: View {
                 .tabItem {
                     Image("list_home")
                 }.tag(1)
-            Text("Settings Placeholder")
+            SettingsView()
                 .tabItem {
                     Image("gear")
                 }.tag(2)

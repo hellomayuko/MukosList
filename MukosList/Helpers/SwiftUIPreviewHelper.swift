@@ -22,7 +22,7 @@ class SwiftUIPreviewHelper {
         
         if(shouldCreateItems) {
             let itemManager = ShoppingItemDataManager()
-            itemManager.addItem("Bok Boy", toList: "99 Ranch", quantity: 1, highPriority: false, context: context)
+            itemManager.addItem("Bok Choy", toList: "99 Ranch", quantity: 1, highPriority: false, context: context)
             itemManager.addItem("Rogel for Kurthiam", toList: "99 Ranch", quantity: 1, highPriority: false, context: context)
             itemManager.addItem("Tapioca Pearls", toList: "99 Ranch", quantity: 1, highPriority: false, context: context)
             itemManager.addItem("Ice Cream", toList: "99 Ranch", quantity: 1, highPriority: false, context: context)
