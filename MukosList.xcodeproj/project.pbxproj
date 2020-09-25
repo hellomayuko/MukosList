@@ -12,6 +12,8 @@
 		2C3169242515299C005FAB03 /* SettingsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3169232515299C005FAB03 /* SettingsHelper.swift */; };
 		2C31692725152B58005FAB03 /* UpdateNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C31692625152B58005FAB03 /* UpdateNameView.swift */; };
 		2C367609249D873C002E3847 /* CheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C367608249D873C002E3847 /* CheckmarkView.swift */; };
+		2C44B201251E9F7C001FC3A6 /* ContainerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C44B200251E9F7C001FC3A6 /* ContainerTabView.swift */; };
+		2C44B206251EAC24001FC3A6 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C44B205251EAC24001FC3A6 /* View.swift */; };
 		2C49BBB024C2538D00B76DFB /* NameListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C49BBAF24C2538D00B76DFB /* NameListView.swift */; };
 		2C4D74D324F0EC1C004E6758 /* ShoppingStore+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4D74D224F0EC1C004E6758 /* ShoppingStore+Extensions.swift */; };
 		2C4E335B246F43100084D51B /* HomeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E335A246F43100084D51B /* HomeListView.swift */; };
@@ -71,6 +73,8 @@
 		2C3169232515299C005FAB03 /* SettingsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHelper.swift; sourceTree = "<group>"; };
 		2C31692625152B58005FAB03 /* UpdateNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNameView.swift; sourceTree = "<group>"; };
 		2C367608249D873C002E3847 /* CheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkView.swift; sourceTree = "<group>"; };
+		2C44B200251E9F7C001FC3A6 /* ContainerTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTabView.swift; sourceTree = "<group>"; };
+		2C44B205251EAC24001FC3A6 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		2C49BBAF24C2538D00B76DFB /* NameListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameListView.swift; sourceTree = "<group>"; };
 		2C4D74D224F0EC1C004E6758 /* ShoppingStore+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShoppingStore+Extensions.swift"; sourceTree = "<group>"; };
 		2C4E335A246F43100084D51B /* HomeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListView.swift; sourceTree = "<group>"; };
@@ -155,6 +159,7 @@
 				2C893E682471F3200013DEE5 /* ShoppingItems */,
 				2C31692525152B47005FAB03 /* Settings */,
 				2C5D25E0245F603500BF1907 /* ContentView.swift */,
+				2C44B200251E9F7C001FC3A6 /* ContainerTabView.swift */,
 				2C4E335A246F43100084D51B /* HomeListView.swift */,
 				2C893E6F247206C50013DEE5 /* FilteredList.swift */,
 				2CEB7BCA24B9241A008F618F /* SearchButton.swift */,
@@ -201,6 +206,7 @@
 				2C893E6A2471F3880013DEE5 /* Helpers */,
 				2C5D25DC245F603500BF1907 /* AppDelegate.swift */,
 				2C5D25DE245F603500BF1907 /* SceneDelegate.swift */,
+				2C44B205251EAC24001FC3A6 /* View.swift */,
 				2C4E33AE246F537A0084D51B /* MukosList.xcdatamodeld */,
 				2C5D25E2245F603600BF1907 /* Assets.xcassets */,
 				2C5D25E7245F603600BF1907 /* LaunchScreen.storyboard */,
@@ -432,6 +438,7 @@
 				2CB5526D25153BDB00BD3AE8 /* SignInWithAppleView.swift in Sources */,
 				2C4E33B0246F537A0084D51B /* MukosList.xcdatamodeld in Sources */,
 				2C12ED8024CC0A2F00B137FA /* StoreLocationCell.swift in Sources */,
+				2C44B201251E9F7C001FC3A6 /* ContainerTabView.swift in Sources */,
 				2C4E335B246F43100084D51B /* HomeListView.swift in Sources */,
 				2C893E672471F1620013DEE5 /* ListCell.swift in Sources */,
 				2C31692725152B58005FAB03 /* UpdateNameView.swift in Sources */,
@@ -455,6 +462,7 @@
 				2CDCEA1524CB867B00BF2E5F /* ChooseStoreView.swift in Sources */,
 				2C7D9D7C24CBA17F0096BDD1 /* NearbyStoresFetcher.swift in Sources */,
 				2C4D74D324F0EC1C004E6758 /* ShoppingStore+Extensions.swift in Sources */,
+				2C44B206251EAC24001FC3A6 /* View.swift in Sources */,
 				2C5D25E1245F603500BF1907 /* ContentView.swift in Sources */,
 				2CB5525C25153A3400BD3AE8 /* LoginView.swift in Sources */,
 				2CEB7BCB24B9241A008F618F /* SearchButton.swift in Sources */,

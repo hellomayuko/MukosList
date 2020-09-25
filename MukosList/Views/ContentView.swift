@@ -17,17 +17,18 @@ struct ContentView: View {
         TabView(selection: $selectedView) {
             Text("Favorites Placeholder")
                 .tabItem {
-                    Image("star")
+                    Image(systemName: "star").font(.title)
+                    Text("favorites").font(.title)
                 }.tag(0)
-            HomeListView()
-                .environment(\.managedObjectContext, self.managedObjectContext)
-                .tabItem {
-                    Image("list_home")
-                }.tag(1)
+//            HomeListView()
+//                .environment(\.managedObjectContext, self.managedObjectContext)
+//                .tabItem {
+//                    Image("list_home")
+//                }.tag(1)
             SettingsView()
                 .tabItem {
-                    Image("gear")
-                }.tag(2)
+                    Image(systemName: "gear").font(.system(size: 100))
+                }.tag(1)
         }
     }
 }
