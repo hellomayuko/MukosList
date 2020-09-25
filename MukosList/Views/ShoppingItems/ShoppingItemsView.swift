@@ -146,9 +146,6 @@ struct ShoppingItemsView: View {
             }
         }.sheet(isPresented: self.$presentEditSheet) {
             AddListView(setupState: self.$setupState, listName: self.shoppingList.name, store: self.shoppingList.store?.getStore(), uid: self.shoppingList.id).environment(\.managedObjectContext, self.managedObjectContext)
-                .onDisappear {
-                    self.setupState = .renaming
-                }
         }
     }
     

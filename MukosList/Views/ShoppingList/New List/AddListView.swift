@@ -54,13 +54,13 @@ struct AddListView: View {
 
     var body: some View {
         VStack {
-            if(setupState == .creating || self.setupState == .editing) {
+            if(self.setupState == .creating || self.setupState == .editing) {
                 NewListsLoadingView(setupState: self.$setupState, listName: self.$listName, store: self.$store, uid: self.uid).environment(\.managedObjectContext, self.managedObjectContext)
             } else {
                 Spacer().frame(height:16)
                 HStack {
-                    Rectangle().frame(height:8).foregroundColor(colorFor(setupState: .naming))
-                    Rectangle().frame(height:8).foregroundColor(colorFor(setupState: .location))
+                    Rectangle().frame(height:8).foregroundColor(colorFor(setupStates: [.naming, .renaming]))
+                    Rectangle().frame(height:8).foregroundColor(colorFor(setupStates: [.location, .relocating]))
     //                Rectangle().frame(height:8).foregroundColor(colorFor(setupState: .sharing))
                 }.padding(.horizontal)
                 ZStack {
@@ -112,8 +112,8 @@ struct AddListView: View {
         }
     }
 
-    func colorFor(setupState: SetupState) -> Color {
-        if(setupState == self.setupState) {
+    func colorFor(setupStates: [SetupState]) -> Color {
+        if(setupStates.contains(self.setupState)) {
             return Color("orange")
         } else {
             return Color("gray_light")

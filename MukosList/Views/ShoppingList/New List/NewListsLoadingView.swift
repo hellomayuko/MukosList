@@ -37,11 +37,18 @@ struct NewListsLoadingView: View {
             dataManager.addOrUpdateNew(list: self.uid, listName: self.listName, store: self.store, context: self.managedObjectContext)
 
             self.startTimer()
+        }.onDisappear {
+            if(self.setupState == .editing) {
+                self.setupState = .renaming
+            } else if(self.setupState == .creating) {
+                self.setupState = .naming
+            }
         }
     }
 
     func startTimer() {
         let _ = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (timer) in
+     
             self.presentation.wrappedValue.dismiss()
         }
     }
