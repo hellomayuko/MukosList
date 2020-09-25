@@ -29,10 +29,10 @@ struct ItemCell: View {
             VStack(alignment:.leading) {
                 Text(shoppingItem.itemName ?? "idk")
                     .font(.system(size: 22, weight: .medium, design: .default))
-                    .foregroundColor(Color.black)
+                    .foregroundColor(Color(.label))
                 Text("Submitted \(shoppingItem.lastUpdated?.timeStampString ?? "NA")")
                     .font(.system(size: 16))
-                    .foregroundColor(Color.black)
+                    .foregroundColor(Color(.label))
             }
             Spacer()
 //            Button(action: {

@@ -24,11 +24,11 @@ struct StoreLocationCell: View {
             }
             Group {
                 VStack(alignment:.leading) {
-                    Text(store.name).font(.system(size:22, weight:.medium, design:.default))
+                    Text(store.name).font(.system(size:22, weight:.medium, design:.default)).foregroundColor(Color(.label))
                     HStack {
-                        Text(store.address).font(.system(size:16, weight:.regular, design:.default))
-                        Text("•")
-                        Text(store.distanceFromZip).font(.system(size:16, weight:.regular, design:.default))
+                        Text(store.address).font(.system(size:16, weight:.regular, design:.default)).foregroundColor(Color(.secondaryLabel))
+                        Text("•").foregroundColor(Color(.secondaryLabel))
+                        Text(store.distanceFromZip).font(.system(size:16, weight:.regular, design:.default)).foregroundColor(Color(.secondaryLabel))
                     }
                 }
                 Spacer()

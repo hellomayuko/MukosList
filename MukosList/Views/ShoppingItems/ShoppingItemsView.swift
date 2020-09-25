@@ -96,13 +96,12 @@ struct ShoppingItemsView: View {
                 }
                     .frame(height: 48.0)
                     .multilineTextAlignment(.leading)
-                    .foregroundColor(Color("gray_dark"))
+                    .foregroundColor(Color(.label))
                     .font(.system(size:18, weight:.medium, design:.default))
                     .background(
                         RoundedRectangle(cornerRadius: 20)
-                            .foregroundColor(Color("gray_kindaLight"))
+                            .foregroundColor(Color(.systemFill))
                             .padding(.leading, -15)
-                            .shadow(color: Color("gray_medium"), radius: 1.0, x: 0, y: 3)
                     )
                     .padding(.leading, 15)
                 Spacer().frame(width:24)
@@ -124,7 +123,7 @@ struct ShoppingItemsView: View {
                         .padding(.vertical, 6)
                 }
             }
-        }.background(Color("gray_veryLight"))
+        }
         .navigationBarTitle(Text(self.shoppingList.name ?? "default"
         ))
         .navigationBarItems(trailing:
@@ -171,6 +170,10 @@ struct ShoppingItemsView_Previews: PreviewProvider {
         
         let list = SwiftUIPreviewHelper.createList(withContext: context, withItems: true)
         
-        return ShoppingItemsView(shoppingList: list).environment(\.managedObjectContext, context)
+        return Group {
+            ShoppingItemsView(shoppingList: list).environment(\.managedObjectContext, context)
+            ShoppingItemsView(shoppingList: list).environment(\.managedObjectContext, context)
+            ShoppingItemsView(shoppingList: list).environment(\.managedObjectContext, context)
+        }
     }
 }

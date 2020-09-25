@@ -82,7 +82,7 @@ struct AddListView: View {
                     }
                     Text(self.setupState.title)
                         .font(.system(size:24, weight:.semibold, design:.default))
-                        .foregroundColor(Color("gray_dark"))
+                        .foregroundColor(Color(.secondaryLabel))
                     if(self.setupState == .location || self.setupState == .relocating) {
                         HStack {
                             Spacer()

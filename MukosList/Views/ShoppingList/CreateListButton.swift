@@ -23,14 +23,13 @@ struct CreateListButton: View {
                     .font(.headline)
                     .padding(.trailing, 16.0)
                     .padding(.leading, 16.0)
-                    .foregroundColor(Color("gray_mediumDark"))
+                    .foregroundColor(Color(.secondaryLabel))
                 Spacer()
             }
         }
         .frame(height: 72.0)
-        .background(Color(.white))
+        .background(Color(.systemFill))
         .cornerRadius(20)
-        .shadow(radius: 3)
         .sheet(isPresented: self.$showAddListView) {
             AddListView(setupState: self.$setupState, listName: nil, store: nil, uid: nil).environment(\.managedObjectContext, self.managedObjectContext)
         }

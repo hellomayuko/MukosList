@@ -634,7 +634,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.helloMayuko.kaimemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hellomayuko.kaimemo;
 				PRODUCT_NAME = Kaimemo;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -657,7 +657,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.helloMayuko.kaimemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hellomayuko.kaimemo;
 				PRODUCT_NAME = Kaimemo;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

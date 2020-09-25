@@ -68,6 +68,7 @@ struct HomeListView: View {
                     Image("filter")
                 }.buttonStyle(PlainButtonStyle())
             }.padding(.horizontal, 24).padding(.top, 34).padding(.bottom, 24)
+            
             CreateListButton().environment(\.managedObjectContext, self.managedObjectContext).padding(.horizontal, 16)
             Spacer()
             
@@ -81,7 +82,6 @@ struct HomeListView: View {
         }.onAppear {
             self.navigationBarHidden = true
         }
-        .background(Color("gray_veryLight"))
         .edgesIgnoringSafeArea(.top)
     }
     

@@ -28,7 +28,6 @@ struct NameListView: View {
     
         if(listName.wrappedValue != "") {
             _actionButtonState = .init(wrappedValue: .edit)
-            print("woah")
         }
         print(listName)
     }
@@ -38,7 +37,7 @@ struct NameListView: View {
             Spacer()
             Text("Give your list a name")
                 .font(.headline)
-                .foregroundColor(Color("gray_dark"))
+                .foregroundColor(Color(.secondaryLabel))
                 .padding(.bottom, 12.0)
             TextField("", text: $listName, onEditingChanged: {_ in
                 if(self.actionButtonState == .skip) {
@@ -51,7 +50,7 @@ struct NameListView: View {
             }) .frame(height: 56.0)
                 .padding(.horizontal, 40)
                 .multilineTextAlignment(.center)
-                .foregroundColor(Color("gray_dark"))
+            .foregroundColor(Color(.label))
                 .font(.system(size:24, weight:.bold, design:.default))
             Rectangle()
                 .frame(height:2)
@@ -89,7 +88,7 @@ struct NameListView: View {
                             RoundedRectangle(cornerRadius: 10)
                                 .frame(width: 118)
                                 .frame(height:40)
-                                .foregroundColor(Color.white)
+                                .foregroundColor(Color(.systemBackground))
                                 .shadow(color: .gray, radius: 1, x: 0, y: 0)
                         )
                 }
